@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class HsseApiConfig(AppConfig):
+class ApiConfig(AppConfig):
     name = 'hsse_api'
