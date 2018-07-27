@@ -33,14 +33,15 @@ class UserDetail(APIView):
 
     # permission_classes = (permissions.IsAuthenticatedOrReadOnly)
 
-    def get_object(self, pk):
+    def get(self, request, pk):
         try:
-            return models.User.objects.get(pk=pk)
+            user_serializer = serializers.UserSerializer(models.User.objects.get(pk=pk))
+            return Response(user_serializer.data, status=status.HTTP_200_OK)
         except:
             return Http404
 
     def put(self, request, pk, format=None):
-        user = self.get_object(pk)
+        user = models.User.objects.get(pk=pk)
         user_serializer = serializers.UserSerializer(user, data=request.data)
         if user_serializer.is_valid():
             user_serializer.save()
@@ -48,7 +49,7 @@ class UserDetail(APIView):
         return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
-        user = self.get_object(pk)
+        user = models.User.objects.get(pk=pk)
         user.delete()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
