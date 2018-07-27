@@ -1,24 +1,16 @@
 from django.http import Http404
 from rest_framework import status, permissions
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
 from . import models
 from . import serializers
 
+class User(APIView):
 
-# Create your views here.
-
-class Users(APIView):
-
-    # permission_classes = (permissions.IsAuthenticatedOrReadOnly)
-
-    def get(self, request, format=None):
-        """GET all users"""
-        users = models.User.objects.all()
-        user_serializer = serializers.UserSerializer(users, many=True)
-
-        return Response(user_serializer.data)
+    serializer_class = serializers.UserSerializer
+    queryset = models.User.objects.all()
+    permission_classes = (permissions.AllowAny,)
 
     def post(self, request, format=None):
         """Create new user"""
@@ -28,10 +20,17 @@ class Users(APIView):
             return Response(user_serializer.data, status=status.HTTP_201_CREATED)
         return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def perform_create(self, serializer):
+        """Sets the user profile to the logged in user."""
+
+        serializer.save(user_profile=self.request.user)
 
 class UserDetail(APIView):
 
-    # permission_classes = (permissions.IsAuthenticatedOrReadOnly)
+    authentication_classes = (TokenAuthentication,)
+    serializer_class = serializers.UserSerializer
+    queryset = models.User.objects.all()
+    permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request, pk):
         try:
@@ -53,3 +52,17 @@ class UserDetail(APIView):
         user.delete()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class Users(APIView):
+
+    authentication_classes = (TokenAuthentication,)
+    serializer_class = serializers.UserSerializer
+    queryset = models.User.objects.all()
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, format=None):
+        """GET all users"""
+        users = models.User.objects.all()
+        user_serializer = serializers.UserSerializer(users, many=True)
+        
+        return Response(user_serializer.data)
