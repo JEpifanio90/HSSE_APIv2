@@ -32,23 +32,35 @@ class UserDetail(APIView):
     queryset = models.User.objects.all()
     permission_classes = (permissions.IsAuthenticated,)
 
-    def get(self, request, pk):
+    def get_user(self, pk):
         try:
-            user_serializer = serializers.UserSerializer(models.User.objects.get(pk=pk))
-            return Response(user_serializer.data, status=status.HTTP_200_OK)
+            return models.User.objects.get(pk=pk)
         except:
             return Http404
-
-    def put(self, request, pk, format=None):
-        user = models.User.objects.get(pk=pk)
+    
+    def update_user(self, request, pk):
+        user = self.get_user(pk)
         user_serializer = serializers.UserSerializer(user, data=request.data)
         if user_serializer.is_valid():
             user_serializer.save()
             return Response(user_serializer.data, status=status.HTTP_200_OK)
         return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def get(self, request, pk):
+        try:
+            user_serializer = serializers.UserSerializer(self.get_user(pk))
+            return Response(user_serializer.data, status=status.HTTP_200_OK)
+        except:
+            return Http404
+
+    def put(self, request, pk, format=None):
+        return self.update_user(request, pk)
+    
+    def patch(self, request, pk, format=None):
+        return self.update_user(request, pk)
+
     def delete(self, request, pk, format=None):
-        user = models.User.objects.get(pk=pk)
+        user = self.get_user(pk)
         user.delete()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
