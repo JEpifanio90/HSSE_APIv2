@@ -38,9 +38,9 @@ class UserDetail(APIView):
         except:
             return Http404
     
-    def update_user(self, request, pk):
+    def update_user(self, request, pk, partial_save=False):
         user = self.get_user(pk)
-        user_serializer = serializers.UserSerializer(user, data=request.data)
+        user_serializer = serializers.UserSerializer(user, data=request.data, partial=partial_save)
         if user_serializer.is_valid():
             user_serializer.save()
             return Response(user_serializer.data, status=status.HTTP_200_OK)
@@ -57,7 +57,7 @@ class UserDetail(APIView):
         return self.update_user(request, pk)
     
     def patch(self, request, pk, format=None):
-        return self.update_user(request, pk)
+        return self.update_user(request, pk, True)
 
     def delete(self, request, pk, format=None):
         user = self.get_user(pk)
