@@ -1,17 +1,18 @@
 from django.http import Http404
 from rest_framework import status, permissions
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
+from rest_framework.authtoken.serializers import AuthTokenSerializer
+from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from . import models
 from . import serializers
+import pdb
 
 class Login(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
-        serializer = self.serializer_class(data=request.data,
-                                           context={'request': request})
+        serializer = self.serializer_class(data=request.data, context={'request': request})
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
@@ -31,13 +32,26 @@ class User(APIView):
         serialized_user = User.serializer_class(data=request.data)
         if serialized_user.is_valid():
             serialized_user.save()
-            return Response(serialized_user.data, status=status.HTTP_201_CREATED)
+            new_user = serialized_user.data
+            new_user['token'] = self.get_user_token(request)
+            return Response(new_user, status=status.HTTP_201_CREATED)
         return Response(serialized_user.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def perform_create(self, serializer):
         """Sets the user profile to the logged in user."""
 
         serializer.save(user_profile=self.request.user)
+
+    def get_user_token(self, request):
+        new_user_data = {
+            "username": request.data['email'],
+            "password": request.data['password']
+        }
+        serializer = AuthTokenSerializer(data=new_user_data, context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        token, created = Token.objects.get_or_create(user=user)
+        return str(token)
 
 class UserDetail(APIView):
 
