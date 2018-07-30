@@ -51,7 +51,7 @@ class User(APIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
-        return str(token)
+        return token.key
 
 class UserDetail(APIView):
 
