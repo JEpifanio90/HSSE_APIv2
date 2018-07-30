@@ -38,7 +38,7 @@ class User(AbstractBaseUser, models.Model):
 
     email = models.EmailField(max_length=255, blank=False, unique=True)
     name = models.CharField(max_length=255, blank=False)
-    corrective_action = models.ForeignKey(Corrective_Action, related_name="corrective_actions", on_delete=models.CASCADE)
+    corrective_action = models.ForeignKey(Corrective_Action, related_name="corrective_actions", on_delete=models.CASCADE, blank=True, null=True)
     objects = UserManager()
 
     USERNAME_FIELD = 'email'

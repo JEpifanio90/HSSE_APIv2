@@ -1,4 +1,3 @@
-import pdb
 from django.http import Http404
 from rest_framework import status, permissions
 from rest_framework.authentication import TokenAuthentication
@@ -16,14 +15,9 @@ class Login(ObtainAuthToken):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
-        # pdb.set_trace()
         return Response({
             'token': token.key,
-            'user': {
-                'id': user.pk,
-                'name': user.name,
-                'email': user.email
-            }
+            'user': serializers.UserSerializer(user).data
         })
 
 class User(APIView):
