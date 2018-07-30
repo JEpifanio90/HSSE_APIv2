@@ -28,11 +28,11 @@ class User(APIView):
 
     def post(self, request, format=None):
         """Create new user"""
-        user_serializer = serializers.UserSerializer(data=request.data)
-        if user_serializer.is_valid():
-            user_serializer.save()
-            return Response(user_serializer.data, status=status.HTTP_201_CREATED)
-        return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serialized_user = User.serializer_class(data=request.data)
+        if serialized_user.is_valid():
+            serialized_user.save()
+            return Response(serialized_user.data, status=status.HTTP_201_CREATED)
+        return Response(serialized_user.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def perform_create(self, serializer):
         """Sets the user profile to the logged in user."""
@@ -54,16 +54,16 @@ class UserDetail(APIView):
     
     def update_user(self, request, pk, partial_save=False):
         user = self.get_user(pk)
-        user_serializer = serializers.UserSerializer(user, data=request.data, partial=partial_save)
-        if user_serializer.is_valid():
-            user_serializer.save()
-            return Response(user_serializer.data, status=status.HTTP_200_OK)
-        return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serialized_user = UserDetail.serializer_class(user, data=request.data, partial=partial_save)
+        if serialized_user.is_valid():
+            serialized_user.save()
+            return Response(serialized_user.data, status=status.HTTP_200_OK)
+        return Response(serialized_user.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, pk):
         try:
-            user_serializer = serializers.UserSerializer(self.get_user(pk))
-            return Response(user_serializer.data, status=status.HTTP_200_OK)
+            serialized_user = UserDetail.serializer_class(self.get_user(pk))
+            return Response(serialized_user.data, status=status.HTTP_200_OK)
         except:
             return Http404
 
@@ -89,6 +89,6 @@ class Users(APIView):
     def get(self, request, format=None):
         """GET all users"""
         users = models.User.objects.all()
-        user_serializer = serializers.UserSerializer(users, many=True)
+        serialized_user = Users.serializer_class(users, many=True)
         
-        return Response(user_serializer.data)
+        return Response(serialized_user.data)
