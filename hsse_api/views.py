@@ -8,7 +8,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from . import models
 from . import serializers
-import pdb
 
 class Login(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
@@ -18,12 +17,12 @@ class Login(ObtainAuthToken):
         token, created = Token.objects.get_or_create(user=user)
         return Response({
             'token': token.key,
-            'user': serializers.UserSerializer(user).data
+            'user': serializers.User_Serializer(user).data
         })
 
 class User(APIView):
 
-    serializer_class = serializers.UserSerializer
+    serializer_class = serializers.User_Serializer
     queryset = models.User.objects.all()
     permission_classes = (permissions.AllowAny,)
 
@@ -56,7 +55,7 @@ class User(APIView):
 class UserDetail(APIView):
 
     authentication_classes = (TokenAuthentication,)
-    serializer_class = serializers.UserSerializer
+    serializer_class = serializers.User_Serializer
     queryset = models.User.objects.all()
     permission_classes = (permissions.IsAuthenticated,)
 
@@ -96,7 +95,7 @@ class UserDetail(APIView):
 class Users(APIView):
 
     authentication_classes = (TokenAuthentication,)
-    serializer_class = serializers.UserSerializer
+    serializer_class = serializers.User_Serializer
     queryset = models.User.objects.all()
     permission_classes = (permissions.IsAuthenticated,)
 
