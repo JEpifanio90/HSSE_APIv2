@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
-from .constants import Constants
+from hsse_api.constants import Constants
 
 class UserManager(BaseUserManager):
     """Manager For User Creation"""
@@ -30,14 +30,6 @@ class Site(models.Model):
     def __str__(self):
         """String representation of our working site"""
         return self.name
-
-class Employee_Community_Activity(models.Model):
-    activity_number = models.IntegerField(blank=False, null=False)
-    activity_type = models.CharField(max_length=50, blank=False, null=False)
-    community_act = models.BooleanField()
-    name = models.CharField(max_length=80, blank=False, null=False)
-    group = models.CharField(max_length=120, blank=False, null=False)
-    site = models.ForeignKey(Site, on_delete=models.CASCADE, blank=True, null=True)
 
 class Environmental_Indicators(models.Model):
     renewable_electricity_consumed = models.IntegerField(blank=False, null=False)
@@ -89,16 +81,25 @@ class User(AbstractBaseUser, models.Model):
 class Audit_Inspection(models.Model):
     audit_type = models.CharField(max_length=200, blank=False) # Did I have any choices right here?
     due_date = models.DateField(auto_now=False, auto_now_add=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    made_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
 class Corrective_Action(models.Model):
     action = models.CharField(max_length=120, blank=False)
     due_date = models.DateField(auto_now=False, auto_now_add=False)    
-    ehhs = models.CharField(max_length=60, blank=False)
-    manager = models.CharField(max_length=60, blank=False)
+    ehhs_leader = models.ForeignKey(User, related_name='corrective_leader', on_delete=models.CASCADE, blank=True, null=True)
+    manager = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     other_participants = models.CharField(max_length=60)
     status = models.CharField(max_length=11, choices=Constants.STATUS_CHOICES, default="O")
-    supervisor = models.CharField(max_length=60, blank=False)
+    supervisor = models.ForeignKey(User, related_name='corrective_supervisor', on_delete=models.CASCADE, blank=True, null=True)
+    created_by = models.ForeignKey(User, related_name='corrective_user', on_delete=models.CASCADE, blank=True, null=True)
+
+class Employee_Community_Activity(models.Model):
+    activity_number = models.IntegerField(blank=False, null=False)
+    activity_type = models.CharField(max_length=50, blank=False, null=False)
+    community_act = models.BooleanField()
+    name = models.CharField(max_length=80, blank=False, null=False)
+    group = models.CharField(max_length=120, blank=False, null=False)
+    site = models.ForeignKey(Site, on_delete=models.CASCADE, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
 class Report(models.Model):
@@ -145,25 +146,25 @@ class Report(models.Model):
     injury_mecahnism = models.CharField(max_length=3, blank=False, null=False, choices=Constants.INJURY_MECHANISMS)
     fatal_date = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)
     fatality_potential = models.CharField(max_length=1, blank=False, null=False, choices=Constants.FATALITY_POTENTIAL)
-    contributing_actions = models.CharField(max_length=1, blank=False, null=False, choices=Constants.CONTRIBUTING_ACTIONS)
-    contributing_conditions = models.CharField(max_length=1, blank=False, null=False, choices=Constants.CONTRIBUTING_CONDITIONS)
-    influenced_actions = models.CharField(max_length=1, blank=False, null=False, choices=Constants.INFLUENCE_CONTRIBUTING_ACTIONS)
-    influenced_conditions = models.CharField(max_length=1, blank=False, null=False, choices=Constants.INFLUENCE_CONTRIBUTING_CONDITIONS)
+    contributing_actions = models.CharField(max_length=3, blank=False, null=False, choices=Constants.CONTRIBUTING_ACTIONS)
+    contributing_conditions = models.CharField(max_length=3, blank=False, null=False, choices=Constants.CONTRIBUTING_CONDITIONS)
+    influenced_actions = models.CharField(max_length=4, blank=False, null=False, choices=Constants.INFLUENCE_CONTRIBUTING_ACTIONS)
+    influenced_conditions = models.CharField(max_length=3, blank=False, null=False, choices=Constants.INFLUENCE_CONTRIBUTING_CONDITIONS)
     method = models.CharField(max_length=120, blank=False, null=False)
     environment = models.CharField(max_length=120, blank=False, null=False)
     administration = models.CharField(max_length=120, blank=False, null=False)
     person_responsible = models.CharField(max_length=120, blank=False, null=False)
     equipment_machinery = models.CharField(max_length=120, blank=False, null=False)
     people = models.CharField(max_length=120, blank=False, null=False)
-    supervisor = models.CharField(max_length=120, blank=False, null=False)
+    supervisor = models.ForeignKey(User, related_name='report_supervisor', on_delete=models.CASCADE, blank=True, null=True)
     date_time = models.DateTimeField(auto_now=True)
     completion_date = models.DateField(auto_now=True)
     other_participants = models.CharField(max_length=120, blank=False, null=False)
-    approved_by = models.CharField(max_length=120, blank=False, null=False)
+    approved_by = models.ForeignKey(User, related_name='report_approver', on_delete=models.CASCADE, blank=True, null=True)
     apporved_date = models.DateField(auto_now=False, auto_now_add=False)
-    ehhs_leader = models.CharField(max_length=120, blank=False, null=False)
+    ehhs_leader = models.ForeignKey(User, related_name='report_leader', on_delete=models.CASCADE, blank=True, null=True)
     ehhs_approval = models.DateField(auto_now=False, auto_now_add=True)
     incident_description = models.TextField(blank=False, null=False)
     incident_contributing_actions = models.TextField(blank=False, null=False)
     incident_contributing_conditions = models.TextField(blank=False, null=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    created_by = models.ForeignKey(User, related_name='report_creator', on_delete=models.CASCADE, blank=True, null=True)
