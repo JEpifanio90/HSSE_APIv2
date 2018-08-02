@@ -1,29 +1,40 @@
 from rest_framework import serializers
-from . import models
+from hsse_api import models
 
 class Audit_Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Audit_Inspection
-        fields = ('audit_type', 'due_date', 'made_by')
+        fields = ('id', 'audit_type', 'due_date', 'made_by')
 
 class Corrective_Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Corrective_Action
-        fields = ('action', 'due_date', 'status', 'supervisor', 'other_participants', 'ehhs', 'manager', 'created_by')
+        fields = (
+            'id',
+            'action',
+            'due_date',
+            'status',
+            'supervisor',
+            'other_participants',
+            'ehhs_leader',
+            'manager',
+            'created_by'
+        )
 
 class Community_Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Employee_Community_Activity
-        fields = ('activity_number', 'activity_type', 'community_act', 'name', 'group')
+        fields = ('id', 'activity_number', 'activity_type', 'community_act', 'name', 'group')
 
 class Environmental_Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Environmental_Indicators
         fields = (
+            'id',
             'renewable_electricity_consumed',
             'non_renewable_electricity_consumed',
             'consumed_gas',
@@ -40,6 +51,7 @@ class Report_Serializer(serializers.ModelSerializer):
     class Meta:
         model = models.Report
         fields = (
+            'id',
             'case_number',
             'clock_number',
             'employee_name',
@@ -104,7 +116,7 @@ class Report_Serializer(serializers.ModelSerializer):
             'incident_description',
             'incident_contributing_actions',
             'incident_contributing_conditions',
-            'made_by'
+            'created_by'
         )
         extra_kwargs = {'case_number': {'write_only': True}}
 
@@ -113,6 +125,7 @@ class Montly_Report_Serializer(serializers.ModelSerializer):
     class Meta:
         model = models.Monthly_Reports
         fields = (
+            'id',
             'no_employees',
             'no_contractors',
             'worked_employee_hours',
@@ -134,20 +147,17 @@ class Safety_Activity_Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Safety_Activity
-        fields = ('activity_name', 'comments')
+        fields = ('id', 'activity_name', 'comments')
 
 class Site_Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Site
         fields = (
+            'id',
             'name',
             'address',
             'city',
             'state',
-            'country',
-            'user',
-            'activity',
-            'environmental_indicator',
-            'employee_com_activity'
+            'country'
         )
