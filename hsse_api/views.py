@@ -1,27 +1,27 @@
 from django.http import Http404
-from rest_framework import status, permissions
+from rest_framework import status, permissions, viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from . import models
-from . import serializers
+from hsse_api import models
+from hsse_api import serializers
 
 class Login(ObtainAuthToken):
+
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data, context={'request': request})
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
-        token, created = Token.objects.get_or_create(user=user)
+        credentials = Token.objects.get_or_create(user=user)
         return Response({
-            'token': token.key,
+            'token': credentials[0].key,
             'user': serializers.User_Serializer(user).data
         })
 
 class User(APIView):
-
     serializer_class = serializers.User_Serializer
     queryset = models.User.objects.all()
     permission_classes = (permissions.AllowAny,)
@@ -49,11 +49,10 @@ class User(APIView):
         serializer = AuthTokenSerializer(data=new_user_data, context={'request': request})
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
-        token, created = Token.objects.get_or_create(user=user)
-        return token.key
+        credentials = Token.objects.get_or_create(user=user)
+        return credentials[0].key
 
 class UserDetail(APIView):
-
     authentication_classes = (TokenAuthentication,)
     serializer_class = serializers.User_Serializer
     queryset = models.User.objects.all()
@@ -93,7 +92,6 @@ class UserDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class Users(APIView):
-
     authentication_classes = (TokenAuthentication,)
     serializer_class = serializers.User_Serializer
     queryset = models.User.objects.all()
@@ -105,3 +103,51 @@ class Users(APIView):
         serialized_user = Users.serializer_class(users, many=True)
         
         return Response(serialized_user.data)
+
+class Audits_View_Set(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    serializer_class = serializers.Audit_Serializer
+    queryset = models.Audit_Inspection.objects.all()
+    permission_classes = (permissions.IsAuthenticated,)
+
+class Corrective_View_Set(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    serializer_class = serializers.Corrective_Serializer
+    queryset = models.Corrective_Action.objects.all()
+    permission_classes = (permissions.IsAuthenticated,)
+
+class Communities_View_Set(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    serializer_class = serializers.Community_Serializer
+    queryset = models.Employee_Community_Activity.objects.all()
+    permission_classes = (permissions.IsAuthenticated,)
+
+class Environmental_Indicators_View_Set(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    serializer_class = serializers.Environmental_Serializer
+    queryset = models.Environmental_Indicators.objects.all()
+    permission_classes = (permissions.IsAuthenticated,)
+
+class Reports_View_Set(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    serializer_class = serializers.Report_Serializer
+    queryset = models.Report.objects.all()
+    permission_classes = (permissions.IsAuthenticated,)
+
+class Monthly_Reports_View_Set(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    serializer_class = serializers.Montly_Report_Serializer
+    queryset = models.Monthly_Reports.objects.all()
+    permission_classes = (permissions.IsAuthenticated,)
+
+class Safety_Activities_View_Set(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    serializer_class = serializers.Safety_Activity_Serializer
+    queryset = models.Safety_Activity.objects.all()
+    permission_classes = (permissions.IsAuthenticated,)
+
+class Sites_View_Set(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    serializer_class = serializers.Site_Serializer
+    queryset = models.Site.objects.all()
+    permission_classes = (permissions.IsAuthenticated,) 
