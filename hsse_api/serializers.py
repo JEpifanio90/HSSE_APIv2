@@ -30,6 +30,7 @@ class Community_Serializer(serializers.ModelSerializer):
         fields = ('id', 'activity_number', 'activity_type', 'community_act', 'name', 'group')
 
 class Environmental_Serializer(serializers.ModelSerializer):
+    site = serializers.PrimaryKeyRelatedField(queryset=models.Site.objects.all())
 
     class Meta:
         model = models.Environmental_Indicators
@@ -43,8 +44,12 @@ class Environmental_Serializer(serializers.ModelSerializer):
             'non_dangerous_waste_generated',
             'waste_sold',
             'waste_to_landfield',
-            'waste_recycled'
+            'waste_recycled',
+            'site'
         )
+
+    def __unicode__(self):
+        return 'TESTING'
 
 class Report_Serializer(serializers.ModelSerializer):
 
@@ -150,6 +155,7 @@ class Safety_Activity_Serializer(serializers.ModelSerializer):
         fields = ('id', 'activity_name', 'comments')
 
 class Site_Serializer(serializers.ModelSerializer):
+    # environmental_indicators = serializers.StringRelatedField(many=True, read_only=False)
 
     class Meta:
         model = models.Site

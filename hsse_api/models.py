@@ -24,6 +24,7 @@ class Site(models.Model):
     city = models.CharField(max_length=70, blank=False)
     state = models.CharField(max_length=50, blank=False)
     country = models.CharField(max_length=70, blank=False)
+    objects = models.Manager()
 
     REQUIRED_FIELDS = ['name', 'city', 'state', 'country']
 
@@ -41,7 +42,7 @@ class Environmental_Indicators(models.Model):
     waste_sold = models.IntegerField(blank=False, null=False)
     waste_to_landfield = models.IntegerField(blank=False, null=False)
     waste_recycled = models.IntegerField(blank=False, null=False)
-    site = models.ForeignKey(Site, on_delete=models.CASCADE, blank=True, null=True)
+    site = models.ForeignKey(Site, on_delete=models.CASCADE)
 
 class Monthly_Reports(models.Model):
     no_employees = models.IntegerField(blank=False, null=False)
@@ -56,7 +57,7 @@ class Monthly_Reports(models.Model):
 class Safety_Activity(models.Model):
     activity_name = models.CharField(max_length=255, blank=False, unique=True)
     comments = models.TextField(blank=True, null=True)
-    site = models.ForeignKey(Site, on_delete=models.CASCADE, blank=True, null=True)
+    site = models.ForeignKey(Site, related_name='safety_activities', on_delete=models.CASCADE, blank=True, null=True)
 
     REQUIRED_FIELDS = ['activity_name']
 
@@ -67,7 +68,7 @@ class User(AbstractBaseUser, models.Model):
     """Represents a 'user profile' inside our system"""
     email = models.EmailField(max_length=255, blank=False, unique=True)
     name = models.CharField(max_length=255, blank=False)
-    site = models.ForeignKey(Site, on_delete=models.CASCADE, blank=True, null=True)
+    site = models.ForeignKey(Site, related_name='user_sites', on_delete=models.CASCADE, blank=True, null=True)
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
@@ -81,17 +82,17 @@ class User(AbstractBaseUser, models.Model):
 class Audit_Inspection(models.Model):
     audit_type = models.CharField(max_length=200, blank=False) # Did I have any choices right here?
     due_date = models.DateField(auto_now=False, auto_now_add=False)
-    made_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    made_by = models.ForeignKey(User, related_name='audit_inspections', on_delete=models.CASCADE, blank=True, null=True)
 
 class Corrective_Action(models.Model):
     action = models.CharField(max_length=120, blank=False)
     due_date = models.DateField(auto_now=False, auto_now_add=False)    
-    ehhs_leader = models.ForeignKey(User, related_name='corrective_leader', on_delete=models.CASCADE, blank=True, null=True)
+    ehhs_leader = models.ForeignKey(User, related_name='corrective_action_leader', on_delete=models.CASCADE, blank=True, null=True)
     manager = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     other_participants = models.CharField(max_length=60)
     status = models.CharField(max_length=11, choices=Constants.STATUS_CHOICES, default="O")
-    supervisor = models.ForeignKey(User, related_name='corrective_supervisor', on_delete=models.CASCADE, blank=True, null=True)
-    created_by = models.ForeignKey(User, related_name='corrective_user', on_delete=models.CASCADE, blank=True, null=True)
+    supervisor = models.ForeignKey(User, related_name='corrective_action_supervisor', on_delete=models.CASCADE, blank=True, null=True)
+    created_by = models.ForeignKey(User, related_name='corrective_action_user', on_delete=models.CASCADE, blank=True, null=True)
 
 class Employee_Community_Activity(models.Model):
     activity_number = models.IntegerField(blank=False, null=False)
@@ -99,8 +100,8 @@ class Employee_Community_Activity(models.Model):
     community_act = models.BooleanField()
     name = models.CharField(max_length=80, blank=False, null=False)
     group = models.CharField(max_length=120, blank=False, null=False)
-    site = models.ForeignKey(Site, on_delete=models.CASCADE, blank=True, null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    site = models.ForeignKey(Site, related_name='community_activities', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='employee_activities', on_delete=models.CASCADE)
 
 class Report(models.Model):
     case_number = models.CharField(max_length=120, unique=True, blank=False, null=False)
