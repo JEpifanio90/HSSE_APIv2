@@ -83,7 +83,7 @@ class User(AbstractBaseUser, models.Model):
 class Audit_Inspection(models.Model):
     audit_type = models.CharField(max_length=200, blank=False) # Did I have any choices right here?
     due_date = models.DateField(auto_now=False, auto_now_add=False)
-    made_by = models.ForeignKey(User, related_name='audit_inspections', on_delete=models.CASCADE, blank=True, null=True)
+    made_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
 class Corrective_Action(models.Model):
     action = models.CharField(max_length=120, blank=False)
@@ -102,8 +102,8 @@ class Employee_Community_Activity(models.Model):
     community_act = models.BooleanField()
     name = models.CharField(max_length=80, blank=False, null=False)
     group = models.CharField(max_length=120, blank=False, null=False)
-    site = models.ForeignKey(Site, related_name='community_activities', on_delete=models.CASCADE)
-    user = models.ForeignKey(User, related_name='employee_activities', on_delete=models.CASCADE)
+    site = models.ForeignKey(Site, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     objects = models.Manager()
 
 class Report(models.Model):
