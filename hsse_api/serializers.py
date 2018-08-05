@@ -2,13 +2,15 @@ from rest_framework import serializers
 from hsse_api import models
 
 class Audit_Serializer(serializers.ModelSerializer):
-
+    created_by = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
     class Meta:
         model = models.Audit_Inspection
-        fields = ('id', 'audit_type', 'due_date', 'made_by')
+        fields = ('id', 'audit_type', 'due_date', 'created_by')
 
 class Corrective_Serializer(serializers.ModelSerializer):
-
+    ehhs_leader = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
+    manager = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
+    created_by = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
     class Meta:
         model = models.Corrective_Action
         fields = (
@@ -24,10 +26,12 @@ class Corrective_Serializer(serializers.ModelSerializer):
         )
 
 class Community_Serializer(serializers.ModelSerializer):
+    site = serializers.PrimaryKeyRelatedField(queryset=models.Site.objects.all())
+    created_by = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
 
     class Meta:
         model = models.Employee_Community_Activity
-        fields = ('id', 'activity_number', 'activity_type', 'community_act', 'name', 'group')
+        fields = ('id', 'activity_number', 'activity_type', 'community_act', 'name', 'group', 'site', 'created_by')
 
 class Environmental_Serializer(serializers.ModelSerializer):
     site = serializers.PrimaryKeyRelatedField(queryset=models.Site.objects.all())
@@ -48,10 +52,11 @@ class Environmental_Serializer(serializers.ModelSerializer):
             'site'
         )
 
-    def __unicode__(self):
-        return 'TESTING'
-
 class Report_Serializer(serializers.ModelSerializer):
+    supervisor = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
+    approved_by = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
+    ehhs_leader = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
+    created_by = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
 
     class Meta:
         model = models.Report
@@ -142,20 +147,20 @@ class Montly_Report_Serializer(serializers.ModelSerializer):
         )
 
 class User_Serializer(serializers.ModelSerializer):
+    site = serializers.PrimaryKeyRelatedField(queryset=models.Site.objects.all())
 
     class Meta:
         model = models.User
-        fields = ('id', 'email', 'name', 'password')
+        fields = ('id', 'email', 'name', 'password', 'site')
         extra_kwargs = {'password': {'write_only': True}}
 
 class Safety_Activity_Serializer(serializers.ModelSerializer):
-
+    site = serializers.PrimaryKeyRelatedField(queryset=models.Site.objects.all())
     class Meta:
         model = models.Safety_Activity
-        fields = ('id', 'activity_name', 'comments')
+        fields = ('id', 'activity_name', 'comments', 'site')
 
 class Site_Serializer(serializers.ModelSerializer):
-    # environmental_indicators = serializers.StringRelatedField(many=True, read_only=False)
 
     class Meta:
         model = models.Site

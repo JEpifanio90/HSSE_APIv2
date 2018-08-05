@@ -6,12 +6,12 @@ from hsse_api.constants import Constants
 class UserManager(BaseUserManager):
     """Manager For User Creation"""
 
-    def create(self, email, name, password):
+    def create(self, email, name, password, site):
         """Yup, what it says"""
         if not email:
             raise ValueError("Hey! We need an email")
         email = self.normalize_email(email)
-        user = self.model(name=name, email=email)
+        user = self.model(name=name, email=email, site=site)
         user.set_password(password)
         user.save(using=self._db)
 
@@ -43,6 +43,7 @@ class Environmental_Indicators(models.Model):
     waste_to_landfield = models.IntegerField(blank=False, null=False)
     waste_recycled = models.IntegerField(blank=False, null=False)
     site = models.ForeignKey(Site, on_delete=models.CASCADE)
+    objects = models.Manager()
 
 class Monthly_Reports(models.Model):
     no_employees = models.IntegerField(blank=False, null=False)
@@ -53,12 +54,13 @@ class Monthly_Reports(models.Model):
     no_reports_closed = models.IntegerField(blank=False, null=False)
     no_reports_in_progress = models.IntegerField(blank=False, null=False)
     no_reports_open = models.IntegerField(blank=False, null=False)
+    objects = models.Manager()
 
 class Safety_Activity(models.Model):
     activity_name = models.CharField(max_length=255, blank=False, unique=True)
     comments = models.TextField(blank=True, null=True)
     site = models.ForeignKey(Site, related_name='safety_activities', on_delete=models.CASCADE, blank=True, null=True)
-
+    objects = models.Manager()
     REQUIRED_FIELDS = ['activity_name']
 
     def __str__(self):
@@ -68,9 +70,8 @@ class User(AbstractBaseUser, models.Model):
     """Represents a 'user profile' inside our system"""
     email = models.EmailField(max_length=255, blank=False, unique=True)
     name = models.CharField(max_length=255, blank=False)
-    site = models.ForeignKey(Site, related_name='user_sites', on_delete=models.CASCADE, blank=True, null=True)
+    site = models.ForeignKey(Site, on_delete=models.CASCADE)
     objects = UserManager()
-
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name', 'password']
 
@@ -93,6 +94,7 @@ class Corrective_Action(models.Model):
     status = models.CharField(max_length=11, choices=Constants.STATUS_CHOICES, default="O")
     supervisor = models.ForeignKey(User, related_name='corrective_action_supervisor', on_delete=models.CASCADE, blank=True, null=True)
     created_by = models.ForeignKey(User, related_name='corrective_action_user', on_delete=models.CASCADE, blank=True, null=True)
+    objects = models.Manager()
 
 class Employee_Community_Activity(models.Model):
     activity_number = models.IntegerField(blank=False, null=False)
@@ -102,6 +104,7 @@ class Employee_Community_Activity(models.Model):
     group = models.CharField(max_length=120, blank=False, null=False)
     site = models.ForeignKey(Site, related_name='community_activities', on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name='employee_activities', on_delete=models.CASCADE)
+    objects = models.Manager()
 
 class Report(models.Model):
     case_number = models.CharField(max_length=120, unique=True, blank=False, null=False)
@@ -169,3 +172,4 @@ class Report(models.Model):
     incident_contributing_actions = models.TextField(blank=False, null=False)
     incident_contributing_conditions = models.TextField(blank=False, null=False)
     created_by = models.ForeignKey(User, related_name='report_creator', on_delete=models.CASCADE, blank=True, null=True)
+    objects = models.Manager()
