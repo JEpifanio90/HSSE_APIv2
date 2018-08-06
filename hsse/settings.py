@@ -88,7 +88,7 @@ DATABASES = {
         'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
         'PORT': os.environ.get('POSTGRES_PORT', '5432'),
     }
-} # postgres://eppmtljwraphqy:99d93c5793180cc48b748da909484f8b2c5349b5d03462aa1d52825ef4fc219d@ec2-54-221-210-97.compute-1.amazonaws.com:5432/d8s9gobqirhsap
+}
 
 
 # Password validation
