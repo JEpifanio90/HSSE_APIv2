@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'hsse-api.herokuapp.com',
-    'localhost'
+    'localhost:4200'
 ]
 
 # Fixture Dir
