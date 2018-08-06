@@ -1,0 +1,24 @@
+[
+    {
+      "model": "hsse_api.Site",
+      "pk": 1,
+      "fields": {
+          "name": "Test Site Name",
+          "address": "Test Site Address",
+          "city": "Test Site City",
+          "state": "Test Site State",
+          "country": "Test Site Country"
+        }
+    },
+    {
+      "model": "hsse_api.Site",
+      "pk": 2,
+      "fields": {
+        "name": "Test Site Name 2",
+        "address": "Test Site Address 2",
+        "city": "Test Site City 2",
+        "state": "Test Site State 2",
+        "country": "Test Site Country 2"
+      }
+    }
+  ]

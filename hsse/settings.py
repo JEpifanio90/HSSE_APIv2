@@ -30,6 +30,11 @@ ALLOWED_HOSTS = [
     'localhost'
 ]
 
+# Fixture Dir
+FIXTURE_DIRS = (
+   '/hsse_api/fixtures/',
+)
+
 
 # Application definition
 
