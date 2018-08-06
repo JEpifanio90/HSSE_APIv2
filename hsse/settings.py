@@ -23,9 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'p0itsu)(+jlsk&nyl+4psnk7-e3v4#)&3911$79o+b&oo0s^r7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'https://hsse-api.herokuapp.com'
+]
 
 
 # Application definition
