@@ -10,6 +10,7 @@ class Audit_Serializer(serializers.ModelSerializer):
 class Corrective_Serializer(serializers.ModelSerializer):
     ehhs_leader = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
     manager = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
+    supervisor = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
     created_by = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
     class Meta:
         model = models.Corrective_Action
