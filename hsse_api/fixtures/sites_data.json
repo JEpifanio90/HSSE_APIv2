@@ -1,24 +1,68 @@
 [
-    {
-      "model": "hsse_api.Site",
-      "pk": 1,
-      "fields": {
-          "name": "Test Site Name",
-          "address": "Test Site Address",
-          "city": "Test Site City",
-          "state": "Test Site State",
-          "country": "Test Site Country"
-        }
-    },
-    {
-      "model": "hsse_api.Site",
-      "pk": 2,
-      "fields": {
-        "name": "Test Site Name 2",
-        "address": "Test Site Address 2",
-        "city": "Test Site City 2",
-        "state": "Test Site State 2",
-        "country": "Test Site Country 2"
-      }
+  {
+    "model": "hsse_api.Site",
+    "pk": 1,
+    "fields": {
+      "name": "Americas",
+      "address": "Test Site Address",
+      "city": "Test Site City",
+      "state": "Test Site State",
+      "country": "Test Site Country"
     }
-  ]
+  },
+  {
+    "model": "hsse_api.Site",
+    "pk": 2,
+    "fields": {
+      "name": "Asia",
+      "address": "Test Site Address 2",
+      "city": "Test Site City 2",
+      "state": "Test Site State 2",
+      "country": "Test Site Country 2"
+    }
+  },
+  {
+    "model": "hsse_api.Site",
+    "pk": 3,
+    "fields": {
+      "name": "Africa",
+      "address": "Test Site Address 3",
+      "city": "Test Site City 3",
+      "state": "Test Site State 3",
+      "country": "Test Site Country 3"
+    }
+  },
+  {
+    "model": "hsse_api.Site",
+    "pk": 4,
+    "fields": {
+      "name": "Antartica",
+      "address": "Test Site Address 4",
+      "city": "Test Site City 4",
+      "state": "Test Site State 4",
+      "country": "Test Site Country 4"
+    }
+  },
+  {
+    "model": "hsse_api.Site",
+    "pk": 5,
+    "fields": {
+      "name": "Europe",
+      "address": "Test Site Address 5",
+      "city": "Test Site City ",
+      "state": "Test Site State ",
+      "country": "Test Site Country 5"
+    }
+  },
+  {
+    "model": "hsse_api.Site",
+    "pk": 6,
+    "fields": {
+      "name": "Australia",
+      "address": "Test Site Address 6",
+      "city": "Test Site City 6",
+      "state": "Test Site State 6",
+      "country": "Test Site Country 6"
+    }
+  }
+]
