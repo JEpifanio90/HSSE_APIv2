@@ -26,7 +26,8 @@ SECRET_KEY = 'p0itsu)(+jlsk&nyl+4psnk7-e3v4#)&3911$79o+b&oo0s^r7'
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'https://hsse-api.herokuapp.com'
+    'hsse-api.herokuapp.com',
+    'localhost'
 ]
 
 
