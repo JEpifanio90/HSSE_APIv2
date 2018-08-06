@@ -20,11 +20,7 @@ class Login(ObtainAuthToken):
         serialized_user['token'] = credentials[0].key
         return Response(serialized_user, status=status.HTTP_200_OK)
 
-class Users_View_set(viewsets.ModelViewSet):
-    authentication_classes = (TokenAuthentication,)
-    serializer_class = serializers.User_Serializer
-    queryset = models.User.objects.all()
-    permission_classes = (permissions.IsAuthenticated,)
+class Sign_In(APIView):
 
     def get_user_token(self, request):
         new_user_data = {
@@ -37,9 +33,9 @@ class Users_View_set(viewsets.ModelViewSet):
         credentials = Token.objects.get_or_create(user=user)
         return credentials[0].key
 
-    def create(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         """Create new user"""
-        serialized_user = self.serializer_class(data=request.data)
+        serialized_user = serializers.User_Serializer(data=request.data)
         serialized_user.is_valid(raise_exception=True)
         if serialized_user.is_valid():
             serialized_user.save()
@@ -47,6 +43,17 @@ class Users_View_set(viewsets.ModelViewSet):
             new_user['token'] = self.get_user_token(request)
             return Response(new_user, status=status.HTTP_201_CREATED)
         return Response(serialized_user.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class Users_View_set(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    serializer_class = serializers.User_Serializer
+    queryset = models.User.objects.all()
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def create(self, request, *args, **kwargs):
+        """Create new user"""
+
+        return Response('UnImplemented, please use api/v2/signin', status=status.HTTP_301_MOVED_PERMANENTLY)
 
 class Audits_View_Set(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
