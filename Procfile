@@ -1,1 +1,1 @@
-web: gunicorn hsse.wsgi --log-file
+web: gunicorn hsse.wsgi --log-file gunicorn_logs.txt
