@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'p0itsu)(+jlsk&nyl+4psnk7-e3v4#)&3911$79o+b&oo0s^r7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'hsse-api.herokuapp.com',
@@ -84,23 +84,19 @@ WSGI_APPLICATION = 'hsse.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.environ.get('POSTGRES_DATABASE', 'hsse_development'),
-#         'USER': os.environ.get('POSTGRES_USER', 'postgres'),
-#         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'root'),
-#         'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
-#         'PORT': os.environ.get('POSTGRES_PORT', '5432'),
-#     }
-# }
-
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': os.environ.get('POSTGRES_DATABASE', 'hsse_development'),
+    #     'USER': os.environ.get('POSTGRES_USER', 'postgres'),
+    #     'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'root'),
+    #     'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
+    #     'PORT': os.environ.get('POSTGRES_PORT', '5432'),
+    # },
     'default': dj_database_url.config(
         default=os.environ.get('DATABASE_URL')
     )
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
