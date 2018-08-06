@@ -147,7 +147,7 @@ class Montly_Report_Serializer(serializers.ModelSerializer):
         )
 
 class User_Serializer(serializers.ModelSerializer):
-    site = serializers.StringRelatedField()
+    site = serializers.PrimaryKeyRelatedField(queryset=models.Site.objects.all())
 
     class Meta:
         model = models.User

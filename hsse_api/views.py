@@ -35,9 +35,8 @@ class Sign_In(APIView):
 
     def post(self, request, *args, **kwargs):
         """Create new user"""
-        serialized_user = serializers.User_Serializer(data=request.data)
-        serialized_user.is_valid(raise_exception=True)
-        if serialized_user.is_valid():
+        serialized_user = serializers.User_Serializer(data=request.data, context={'request': request})
+        if serialized_user.is_valid(raise_exception=True):
             serialized_user.save()
             new_user = serialized_user.data
             new_user['token'] = self.get_user_token(request)
@@ -49,11 +48,6 @@ class Users_View_set(viewsets.ModelViewSet):
     serializer_class = serializers.User_Serializer
     queryset = models.User.objects.all()
     permission_classes = (permissions.IsAuthenticated,)
-
-    def create(self, request, *args, **kwargs):
-        """Create new user"""
-
-        return Response('UnImplemented, please use api/v2/signin', status=status.HTTP_301_MOVED_PERMANENTLY)
 
 class Audits_View_Set(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)

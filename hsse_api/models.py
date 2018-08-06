@@ -84,6 +84,7 @@ class Audit_Inspection(models.Model):
     audit_type = models.CharField(max_length=200, blank=False) # Did I have any choices right here?
     due_date = models.DateField(auto_now=False, auto_now_add=False)
     made_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    objects = models.Manager()
 
 class Corrective_Action(models.Model):
     action = models.CharField(max_length=120, blank=False)
