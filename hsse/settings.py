@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'hsse-api.herokuapp.com',
-    'localhost:4200'
+    'localhost:4200',
+    'https://jepifanio90.github.io/HSSEv2/'
 ]
 
 # Fixture Dir
