@@ -28,12 +28,12 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'hsse-api.herokuapp.com',
     'localhost:4200',
-    'https://jepifanio90.github.io/HSSEv2/'
+    'https://jepifanio90.github.io'
 ]
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:4200',
-    'https://jepifanio90.github.io/HSSEv2/'
+    'https://jepifanio90.github.io'
 )
 
 # Fixture Dir
@@ -51,9 +51,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
-    'corsheaders',
     'hsse_api',
 ]
 
