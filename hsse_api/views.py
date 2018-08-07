@@ -43,6 +43,14 @@ class Sign_In(APIView):
             return Response(new_user, status=status.HTTP_201_CREATED)
         return Response(serialized_user.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class Public(APIView):
+
+    def get(self, request, *args, **kwargs):
+        sites = models.Site.objects.all()
+        serialized_sites = serializers.Site_Serializer(sites, many=True)
+
+        return Response(serialized_sites.data, status=status.HTTP_200_OK)
+
 class Users_View_set(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     serializer_class = serializers.User_Serializer

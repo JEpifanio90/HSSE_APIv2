@@ -16,5 +16,6 @@ router.register(r'users', views.Users_View_set)
 urlpatterns = [
     url(r'^login/?$', views.Login.as_view()),
     url(r'^signin/?$', views.Sign_In.as_view()),
+    url(r'^public/sites?$', views.Public.as_view()),
     url(r'^', include(router.urls))
 ]
