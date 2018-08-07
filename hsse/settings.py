@@ -119,10 +119,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-CORS_ORIGIN_WHITELIST = (
-    'localhost:4200',
-    'https://jepifanio90.github.io'
-)
+# CORS_ORIGIN_WHITELIST = (
+#     'localhost:4200',
+#     'https://jepifanio90.github.io'
+# )
 
 
 # Internationalization
@@ -138,6 +138,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
