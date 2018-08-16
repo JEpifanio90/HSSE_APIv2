@@ -883,7 +883,7 @@
       "form": "userLoginView",
       "icon": "email",
       "input_type": "email",
-      "key": "email",
+      "key": "username",
       "label": "Email Account",
       "required": true
     }
@@ -971,6 +971,4 @@
       "required": true
     }
   }
-  
-
 ]
