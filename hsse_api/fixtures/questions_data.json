@@ -1,0 +1,879 @@
+[
+  {
+    "model": "hsse_api.Question",
+    "pk": 1,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "personalInfoView",
+      "icon": "verified_user",
+      "input_type": "text",
+      "key": "case_number",
+      "label": "Case Number",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 2,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "personalInfoView",
+      "icon": "notes",
+      "input_type": "text",
+      "key": "clock_number",
+      "label": "Time Reported",
+      "required": true,
+      "value": "00:00"
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 3,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "personalInfoView",
+      "icon": "person",
+      "input_type": "text",
+      "key": "employee_name",
+      "label": "Employee Name",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 4,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "personalInfoView",
+      "icon": "person",
+      "input_type": "number",
+      "key": "age",
+      "label": "Employee Age",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 5,
+    "fields": {
+      "control_type": "dropdown",
+      "disabled": false,
+      "form": "personalInfoView",
+      "icon": "accessibility",
+      "key": "gender",
+      "label": "Gender",
+      "options": "",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 6,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "personalInfoView",
+      "icon": "domain",
+      "input_type": "text",
+      "key": "regular_job_position",
+      "label": "Regular Job Position",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 7,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "personalInfoView",
+      "icon": "domain",
+      "input_type": "text",
+      "key": "address",
+      "label": "Employee Address",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 8,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "personalInfoView",
+      "icon": "location_city",
+      "input_type": "text",
+      "key": "regular_department",
+      "label": "Regular Department",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 8,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "personalInfoView",
+      "icon": "location_city",
+      "input_type": "text",
+      "key": "regular_job_group",
+      "label": "Job Group",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 9,
+    "fields": {
+      "control_type": "dropdown",
+      "disabled": false,
+      "form": "personalInfoView",
+      "icon": "timer",
+      "key": "shift",
+      "label": "Was the employee working overtime?",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 10,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "personalInfoView",
+      "icon": "place",
+      "input_type": "text",
+      "key": "location",
+      "label": "Location Of The Employee",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 11,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "personalInfoView",
+      "icon": "place",
+      "input_type": "text",
+      "key": "exact_location",
+      "label": "Exact Location",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 12,
+    "fields": {
+      "control_type": "datepicker",
+      "disabled": true,
+      "form": "personalInfoView",
+      "key": "incident_date",
+      "label": "Date of the incident",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 13,
+    "fields": {
+      "control_type": "datepicker",
+      "disabled": true,
+      "form": "incidentDescriptionView",
+      "key": "date_reported",
+      "label": "Date Reported",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 14,
+    "fields": {
+      "control_type": "datepicker",
+      "disabled": true,
+      "form": "incidentDescriptionView",
+      "key": "first_day_lost",
+      "label": "First day lost",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 15,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "incidentDescriptionView",
+      "icon": "notes",
+      "input_type": "number",
+      "key": "total_days_lost",
+      "label": "Total days lost",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 16,
+    "fields": {
+      "control_type": "datepicker",
+      "disabled": true,
+      "form": "incidentDescriptionView",
+      "key": "restricted_activity_start_date",
+      "label": "Start restricted activity date",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 17,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "incidentDescriptionView",
+      "icon": "notes",
+      "input_type": "number",
+      "key": "total_days_restricted_activity",
+      "label": "Total days restricted activity",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 18,
+    "fields": {
+      "control_type": "datepicker",
+      "disabled": true,
+      "form": "incidentDescriptionView",
+      "key": "return_work_date",
+      "label": "Return to work date",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 19,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "incidentDescriptionView",
+      "icon": "healing",
+      "input_type": "text",
+      "key": "type_injury",
+      "label": "Type of injury",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 20,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "incidentDescriptionView",
+      "icon": "location_city",
+      "input_type": "text",
+      "key": "body_part",
+      "label": "Injured Body part",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 21,
+    "fields": {
+      "control_type": "dropdown",
+      "disabled": false,
+      "form": "incidentDescriptionView",
+      "icon": "accessibility",
+      "key": "body_side",
+      "label": "Body Side",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 22,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "incidentDescriptionView",
+      "icon": "local_hospital",
+      "input_type": "text",
+      "key": "local_clinic_name",
+      "label": "Local Clinic Name",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 23,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "incidentDescriptionView",
+      "icon": "face",
+      "input_type": "text",
+      "key": "doctor_name",
+      "label": "Treating Doctor's Name",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 24,
+    "fields": {
+      "control_type": "dropdown",
+      "disabled": false,
+      "form": "incidentDescriptionView",
+      "icon": "event_note",
+      "key": "case_type",
+      "label": "Case Type",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 25,
+    "fields": {
+      "control_type": "datepicker",
+      "disabled": true,
+      "form": "incidentDescriptionView",
+      "icon": "event_note",
+      "key": "major_accident",
+      "label": "Was Major Accident",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 26,
+    "fields": {
+      "control_type": "dropdown",
+      "disabled": false,
+      "form": "incidentDescriptionView",
+      "icon": "event_note",
+      "key": "accident_type",
+      "label": "Accident Type",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 27,
+    "fields": {
+      "control_type": "dropdown",
+      "disabled": false,
+      "form": "incidentDescriptionView",
+      "icon": "event_note",
+      "key": "other_results",
+      "label": "Other Results",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 28,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "eventDescriptionView",
+      "icon": "pin_drop",
+      "input_type": "text",
+      "key": "area",
+      "label": "Event Area",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 29,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "eventDescriptionView",
+      "icon": "location_city",
+      "input_type": "text",
+      "key": "department",
+      "label": "Event Department",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 30,
+    "fields": {
+      "control_type": "dropdown",
+      "disabled": false,
+      "form": "eventDescriptionView",
+      "icon": "question_answer",
+      "key": "at_operation",
+      "label": "At Operation?",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 31,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "eventDescriptionView",
+      "icon": "place",
+      "input_type": "text",
+      "key": "location_at_event",
+      "label": "Location of the event",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 32,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "eventDescriptionView",
+      "icon": "notes",
+      "input_type": "number",
+      "key": "time_in_position",
+      "label": "Total days restricted activity",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 33,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "eventDescriptionView",
+      "icon": "question_answer",
+      "input_type": "number",
+      "key": "experience_in_position",
+      "label": "Years of experience in position",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 34,
+    "fields": {
+      "control_type": "datepicker",
+      "disabled": true,
+      "form": "eventDescriptionView",
+      "key": "date",
+      "label": "Some date I don't know",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 35,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "eventDescriptionView",
+      "icon": "perm_contact_calendar",
+      "input_type": "text",
+      "key": "contact_agent",
+      "label": "Contact Agent",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 36,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "eventDescriptionView",
+      "icon": "work_outline",
+      "input_type": "text",
+      "key": "work_area",
+      "label": "Working Area",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 37,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "eventDescriptionView",
+      "icon": "notes",
+      "input_type": "text",
+      "key": "exact_area",
+      "label": "Exact Area",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 38,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "eventDescriptionView",
+      "icon": "build",
+      "input_type": "text",
+      "key": "equipment_involved",
+      "label": "Equipment Involved",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 39,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "eventDescriptionView",
+      "icon": "check_circle_outline",
+      "input_type": "text",
+      "key": "activity_being_done",
+      "label": "Activity Being Done",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 40,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "eventDescriptionView",
+      "icon": "accessible",
+      "input_type": "text",
+      "key": "injury_mecahnism",
+      "label": "Injury Mechanism",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 41,
+    "fields": {
+      "control_type": "datepicker",
+      "disabled": true,
+      "form": "incidentAnalysisView",
+      "key": "fatal_date",
+      "label": "If fatal, date",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 42,
+    "fields": {
+      "control_type": "dropdown",
+      "disabled": false,
+      "form": "incidentAnalysisView",
+      "icon": "local_hospital",
+      "key": "fatality_potential",
+      "label": "Fatality Potential",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 43,
+    "fields": {
+      "control_type": "multipledropdown",
+      "disabled": false,
+      "form": "incidentAnalysisView",
+      "icon": "assignment_late",
+      "key": "contributing_actions",
+      "label": "Contributing Actions",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 44,
+    "fields": {
+      "control_type": "multipledropdown",
+      "disabled": false,
+      "form": "incidentAnalysisView",
+      "icon": "notes",
+      "key": "contributing_conditions",
+      "label": "Contributing Conditions",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 45,
+    "fields": {
+      "control_type": "multipledropdown",
+      "disabled": false,
+      "form": "incidentAnalysisView",
+      "icon": "feedback",
+      "key": "influenced_actions",
+      "label": "Influenced Actions",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 46,
+    "fields": {
+      "control_type": "multipledropdown",
+      "disabled": false,
+      "form": "incidentAnalysisView",
+      "icon": "feedback",
+      "key": "influenced_conditions",
+      "label": "Influenced Conditions",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 47,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "incidentAnalysisView",
+      "icon": "speaker_notes",
+      "input_type": "text",
+      "key": "method",
+      "label": "Method Of Injury",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 48,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "incidentAnalysisView",
+      "icon": "speaker_notes",
+      "input_type": "text",
+      "key": "environment",
+      "label": "Environment",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 49,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "incidentAnalysisView",
+      "icon": "supervisor_account",
+      "input_type": "text",
+      "key": "administration",
+      "label": "Administration",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 50,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "incidentAnalysisView",
+      "icon": "person",
+      "input_type": "text",
+      "key": "person_responsible",
+      "label": "Responsible Person",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 51,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "incidentAnalysisView",
+      "icon": "build",
+      "input_type": "text",
+      "key": "equipment_machinery",
+      "label": "Equipment and machinery",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 52,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "incidentAnalysisView",
+      "icon": "people",
+      "input_type": "text",
+      "key": "people",
+      "label": "People Involved",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 53,
+    "fields": {
+      "control_type": "userdropdown",
+      "disabled": false,
+      "form": "incidentAnalysisView",
+      "icon": "supervised_user_circle",
+      "input_type": "text",
+      "key": "supervisor",
+      "label": "Who's the supervisor?",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 54,
+    "fields": {
+      "control_type": "datepicker",
+      "disabled": true,
+      "form": "incidentAnalysisView",
+      "key": "date_time",
+      "label": "Date time",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 55,
+    "fields": {
+      "control_type": "datepicker",
+      "disabled": true,
+      "form": "incidentAnalysisView",
+      "key": "completion_date",
+      "label": "Completion Date",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 56,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "incidentAnalysisView",
+      "icon": "people",
+      "input_type": "text",
+      "key": "other_participants",
+      "label": "Other Participants",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 57,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "incidentAnalysisView",
+      "icon": "subject",
+      "input_type": "text",
+      "key": "incident_description",
+      "label": "What Ocurred?",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 58,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "incidentAnalysisView",
+      "icon": "feedback",
+      "input_type": "text",
+      "key": "incident_contributing_actions",
+      "label": "Contributing actions and Source Causes",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 59,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "incidentAnalysisView",
+      "icon": "feedback",
+      "input_type": "text",
+      "key": "incident_contributing_conditions",
+      "label": "Contributing Conditions and Source Causes",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 60,
+    "fields": {
+      "control_type": "userdropdown",
+      "disabled": false,
+      "form": "approvalsView",
+      "icon": "check_circle",
+      "key": "approved_by",
+      "label": "Approved By",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 61,
+    "fields": {
+      "control_type": "datepicker",
+      "disabled": true,
+      "form": "incidentAnalysisView",
+      "key": "apporved_date",
+      "label": "Approved Date",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 62,
+    "fields": {
+      "control_type": "userdropdown",
+      "disabled": false,
+      "form": "approvalsView",
+      "icon": "supervised_user_circle",
+      "key": "ehhs_leader",
+      "label": "EHHS LEADER",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 63,
+    "fields": {
+      "control_type": "datepicker",
+      "disabled": true,
+      "form": "approvalsView",
+      "key": "ehhs_approval",
+      "label": "Reviewed by EHS&S Leader",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 64,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": true,
+      "form": "incidentAnalysisView",
+      "icon": "profile",
+      "input_type": "text",
+      "key": "created_by",
+      "label": "This report was created by",
+      "required": true
+    }
+  }
+  
+
+]

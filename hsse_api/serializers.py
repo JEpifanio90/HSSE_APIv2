@@ -180,6 +180,7 @@ class Question_Serializer(serializers.ModelSerializer):
     class Meta:
         model = models.Question
         fields = (
+            'id',
             'control_type',
             'disabled',
             'error',
@@ -188,7 +189,6 @@ class Question_Serializer(serializers.ModelSerializer):
             'key',
             'label',
             'options',
-            'order',
             'required',
             'value'
         )

@@ -12,6 +12,7 @@ router.register(r'reports', views.ReportsViewSet)
 router.register(r'safety/activities', views.SafetyActivitiesViewSet)
 router.register(r'sites', views.SitesViewSet)
 router.register(r'users', views.UsersViewSet)
+router.register(r'questions', views.QuestionsViewSet)
 
 urlpatterns = [
     url(r'^login/?$', views.Login.as_view()),
