@@ -32,7 +32,7 @@ class Site(models.Model):
         """String representation of our working site"""
         return self.name
 
-class Environmental_Indicators(models.Model):
+class EnvironmentalIndicator(models.Model):
     renewable_electricity_consumed = models.IntegerField(blank=False, null=False)
     non_renewable_electricity_consumed = models.IntegerField(blank=False, null=False)
     consumed_gas = models.IntegerField(blank=False, null=False)
@@ -45,7 +45,7 @@ class Environmental_Indicators(models.Model):
     site = models.ForeignKey(Site, on_delete=models.CASCADE)
     objects = models.Manager()
 
-class Monthly_Reports(models.Model):
+class MonthlyReport(models.Model):
     no_employees = models.IntegerField(blank=False, null=False)
     no_contractors = models.IntegerField(blank=False, null=False)
     worked_employee_hours = models.IntegerField(blank=False, null=False)
@@ -56,7 +56,7 @@ class Monthly_Reports(models.Model):
     no_reports_open = models.IntegerField(blank=False, null=False)
     objects = models.Manager()
 
-class Safety_Activity(models.Model):
+class SafetyActivity(models.Model):
     activity_name = models.CharField(max_length=255, blank=False, unique=True)
     comments = models.TextField(blank=True, null=True)
     site = models.ForeignKey(Site, related_name='safety_activities', on_delete=models.CASCADE, blank=True, null=True)
@@ -80,24 +80,24 @@ class User(AbstractBaseUser, models.Model):
 
         return self.email
 
-class Audit_Inspection(models.Model):
+class AuditInspection(models.Model):
     audit_type = models.CharField(max_length=200, blank=False) # Did I have any choices right here?
     due_date = models.DateField(auto_now=False, auto_now_add=False)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     objects = models.Manager()
 
-class Corrective_Action(models.Model):
+class CorrectiveAction(models.Model):
     action = models.CharField(max_length=120, blank=False)
     due_date = models.DateField(auto_now=False, auto_now_add=False)    
-    ehhs_leader = models.ForeignKey(User, related_name='corrective_action_leader', on_delete=models.CASCADE, blank=True, null=True)
+    ehhs_leader = models.ForeignKey(User, related_name='CorrectiveAction_leader', on_delete=models.CASCADE, blank=True, null=True)
     manager = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     other_participants = models.CharField(max_length=60)
     status = models.CharField(max_length=11, choices=Constants.STATUS_CHOICES, default="O")
-    supervisor = models.ForeignKey(User, related_name='corrective_action_supervisor', on_delete=models.CASCADE, blank=True, null=True)
-    created_by = models.ForeignKey(User, related_name='corrective_action_user', on_delete=models.CASCADE, blank=True, null=True)
+    supervisor = models.ForeignKey(User, related_name='CorrectiveAction_supervisor', on_delete=models.CASCADE, blank=True, null=True)
+    created_by = models.ForeignKey(User, related_name='CorrectiveAction_user', on_delete=models.CASCADE, blank=True, null=True)
     objects = models.Manager()
 
-class Employee_Community_Activity(models.Model):
+class EmployeeCommunityActivity(models.Model):
     activity_number = models.IntegerField(blank=False, null=False)
     activity_type = models.CharField(max_length=50, blank=False, null=False)
     community_act = models.BooleanField()
@@ -166,7 +166,7 @@ class Report(models.Model):
     completion_date = models.DateField(auto_now=True)
     other_participants = models.CharField(max_length=120, blank=False, null=False)
     approved_by = models.ForeignKey(User, related_name='report_approver', on_delete=models.CASCADE, blank=True, null=True)
-    apporved_date = models.DateField(auto_now=False, auto_now_add=False)
+    approved_date = models.DateField(auto_now=False, auto_now_add=False)
     ehhs_leader = models.ForeignKey(User, related_name='report_leader', on_delete=models.CASCADE, blank=True, null=True)
     ehhs_approval = models.DateField(auto_now=False, auto_now_add=True)
     incident_description = models.TextField(blank=False, null=False)
@@ -174,3 +174,17 @@ class Report(models.Model):
     incident_contributing_conditions = models.TextField(blank=False, null=False)
     created_by = models.ForeignKey(User, related_name='report_creator', on_delete=models.CASCADE, blank=True, null=True)
     objects = models.Manager()
+
+class Question(models.Model):
+    control_type = models.CharField(max_length=50, blank=False, null=False)
+    disabled = models.BooleanField()
+    error = models.CharField(max_length=150, blank=True, null=True, default='')
+    icon = models.CharField(max_length=20, blank=False, null=False)
+    input_type = models.CharField(max_length=20, blank=False, null=False)
+    key = models.CharField(max_length=120, blank=False, null=False)
+    objects = models.Manager()
+    label = models.CharField(max_length=120, blank=False, null=False)
+    options = models.CharField(max_length=255, blank=True, null=True)
+    order = models.IntegerField(blank=False, null=False)
+    required = models.BooleanField()
+    value = models.CharField(max_length=50, blank=True, null=True)

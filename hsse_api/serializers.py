@@ -1,19 +1,19 @@
 from rest_framework import serializers
 from hsse_api import models
 
-class Audit_Serializer(serializers.ModelSerializer):
+class AuditSerializer(serializers.ModelSerializer):
     created_by = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
     class Meta:
-        model = models.Audit_Inspection
+        model = models.AuditInspection
         fields = ('id', 'audit_type', 'due_date', 'created_by')
 
-class Corrective_Serializer(serializers.ModelSerializer):
+class CorrectiveSerializer(serializers.ModelSerializer):
     ehhs_leader = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
     manager = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
     supervisor = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
     created_by = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
     class Meta:
-        model = models.Corrective_Action
+        model = models.CorrectiveAction
         fields = (
             'id',
             'action',
@@ -26,19 +26,19 @@ class Corrective_Serializer(serializers.ModelSerializer):
             'created_by'
         )
 
-class Community_Serializer(serializers.ModelSerializer):
+class CommunitySerializer(serializers.ModelSerializer):
     site = serializers.PrimaryKeyRelatedField(queryset=models.Site.objects.all())
     created_by = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
 
     class Meta:
-        model = models.Employee_Community_Activity
+        model = models.EmployeeCommunityActivity
         fields = ('id', 'activity_number', 'activity_type', 'community_act', 'name', 'group', 'site', 'created_by')
 
-class Environmental_Serializer(serializers.ModelSerializer):
+class EnvironmentalSerializer(serializers.ModelSerializer):
     site = serializers.PrimaryKeyRelatedField(queryset=models.Site.objects.all())
 
     class Meta:
-        model = models.Environmental_Indicators
+        model = models.EnvironmentalIndicator
         fields = (
             'id',
             'renewable_electricity_consumed',
@@ -53,7 +53,7 @@ class Environmental_Serializer(serializers.ModelSerializer):
             'site'
         )
 
-class Report_Serializer(serializers.ModelSerializer):
+class ReportSerializer(serializers.ModelSerializer):
     supervisor = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
     approved_by = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
     ehhs_leader = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
@@ -131,10 +131,10 @@ class Report_Serializer(serializers.ModelSerializer):
         )
         extra_kwargs = {'case_number': {'write_only': True}}
 
-class Montly_Report_Serializer(serializers.ModelSerializer):
+class MonthlyReportSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = models.Monthly_Reports
+        model = models.MonthlyReport
         fields = (
             'id',
             'no_employees',
@@ -147,7 +147,7 @@ class Montly_Report_Serializer(serializers.ModelSerializer):
             'no_reports_open'
         )
 
-class User_Serializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     site = serializers.PrimaryKeyRelatedField(queryset=models.Site.objects.all())
 
     class Meta:
@@ -155,13 +155,13 @@ class User_Serializer(serializers.ModelSerializer):
         fields = ('id', 'email', 'name', 'password', 'site')
         extra_kwargs = {'password': {'write_only': True}}
 
-class Safety_Activity_Serializer(serializers.ModelSerializer):
+class SafetyActivitySerializer(serializers.ModelSerializer):
     site = serializers.PrimaryKeyRelatedField(queryset=models.Site.objects.all())
     class Meta:
-        model = models.Safety_Activity
+        model = models.SafetyActivity
         fields = ('id', 'activity_name', 'comments', 'site')
 
-class Site_Serializer(serializers.ModelSerializer):
+class SiteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Site
@@ -172,4 +172,23 @@ class Site_Serializer(serializers.ModelSerializer):
             'city',
             'state',
             'country'
+        )
+
+
+class Question_Serializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Question
+        fields = (
+            'control_type',
+            'disabled',
+            'error',
+            'icon',
+            'input_type',
+            'key',
+            'label',
+            'options',
+            'order',
+            'required',
+            'value'
         )
