@@ -106,7 +106,5 @@ class SitesViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated,)
 
 class QuestionsViewSet(viewsets.ModelViewSet):
-    authentication_classes = (TokenAuthentication,)
     serializer_class = serializers.Question_Serializer
     queryset = models.Question.objects.all()
-    permission_classes = (permissions.IsAuthenticated,)
