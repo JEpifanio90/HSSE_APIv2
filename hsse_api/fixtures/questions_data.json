@@ -829,7 +829,7 @@
     "fields": {
       "control_type": "datepicker",
       "disabled": true,
-      "form": "incidentAnalysisView",
+      "form": "approvalsView",
       "key": "apporved_date",
       "label": "Approved Date",
       "required": true
@@ -866,108 +866,11 @@
     "fields": {
       "control_type": "textbox",
       "disabled": true,
-      "form": "incidentAnalysisView",
+      "form": "approvalsView",
       "icon": "profile",
       "input_type": "text",
       "key": "created_by",
       "label": "This report was created by",
-      "required": true
-    }
-  },
-  {
-    "model": "hsse_api.Question",
-    "pk": 65,
-    "fields": {
-      "control_type": "textbox",
-      "disabled": false,
-      "form": "userLoginView",
-      "icon": "email",
-      "input_type": "email",
-      "key": "username",
-      "label": "Email Account",
-      "required": true
-    }
-  },
-  {
-    "model": "hsse_api.Question",
-    "pk": 66,
-    "fields": {
-      "control_type": "textbox",
-      "disabled": false,
-      "form": "userLoginView",
-      "icon": "lock",
-      "input_type": "password",
-      "key": "password",
-      "label": "Passsword",
-      "required": true
-    }
-  },
-  {
-    "model": "hsse_api.Question",
-    "pk": 67,
-    "fields": {
-      "control_type": "textbox",
-      "disabled": false,
-      "form": "newUserView",
-      "icon": "person",
-      "input_type": "text",
-      "key": "name",
-      "label": "Given Name",
-      "required": true
-    }
-  },
-  {
-    "model": "hsse_api.Question",
-    "pk": 68,
-    "fields": {
-      "control_type": "textbox",
-      "disabled": false,
-      "form": "newUserView",
-      "icon": "email",
-      "input_type": "email",
-      "key": "email",
-      "label": "Email Account",
-      "required": true
-    }
-  },
-  {
-    "model": "hsse_api.Question",
-    "pk": 69,
-    "fields": {
-      "control_type": "textbox",
-      "disabled": false,
-      "form": "newUserView",
-      "icon": "lock",
-      "input_type": "password",
-      "key": "password",
-      "label": "Passsword",
-      "required": true
-    }
-  },
-  {
-    "model": "hsse_api.Question",
-    "pk": 69,
-    "fields": {
-      "control_type": "textbox",
-      "disabled": false,
-      "form": "newUserView",
-      "icon": "verified_user",
-      "input_type": "password",
-      "key": "password_confirmation",
-      "label": "Passsword",
-      "required": false
-    }
-  },
-  {
-    "model": "hsse_api.Question",
-    "pk": 70,
-    "fields": {
-      "control_type": "dropdown",
-      "disabled": false,
-      "form": "newUserView",
-      "icon": "my_location",
-      "key": "site",
-      "label": "Site of user",
       "required": true
     }
   }
