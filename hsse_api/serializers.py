@@ -184,6 +184,7 @@ class Question_Serializer(serializers.ModelSerializer):
             'control_type',
             'disabled',
             'error',
+            'form',
             'icon',
             'input_type',
             'key',
