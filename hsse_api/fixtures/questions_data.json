@@ -341,8 +341,8 @@
     "model": "hsse_api.Question",
     "pk": 25,
     "fields": {
-      "control_type": "datepicker",
-      "disabled": true,
+      "control_type": "dropdown",
+      "disabled": false,
       "form": "incidentDescriptionView",
       "icon": "event_note",
       "key": "major_accident",
