@@ -830,7 +830,7 @@
       "control_type": "datepicker",
       "disabled": true,
       "form": "approvalsView",
-      "key": "apporved_date",
+      "key": "approved_date",
       "label": "Approved Date",
       "required": true
     }
