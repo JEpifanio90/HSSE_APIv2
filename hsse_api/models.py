@@ -166,7 +166,7 @@ class Report(models.Model):
     completion_date = models.DateField(auto_now=True)
     other_participants = models.CharField(max_length=120, blank=False, null=False)
     approved_by = models.ForeignKey(User, related_name='report_approver', on_delete=models.CASCADE, blank=True, null=True)
-    approved_date = models.DateField(auto_now=False, auto_now_add=False)
+    approved_date = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)
     ehhs_leader = models.ForeignKey(User, related_name='report_leader', on_delete=models.CASCADE, blank=True, null=True)
     ehhs_approval = models.DateField(auto_now=False, auto_now_add=True)
     incident_description = models.TextField(blank=False, null=False)
