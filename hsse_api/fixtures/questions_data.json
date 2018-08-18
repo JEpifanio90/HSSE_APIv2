@@ -114,7 +114,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 8,
+    "pk": 9,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -128,7 +128,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 9,
+    "pk": 10,
     "fields": {
       "control_type": "dropdown",
       "disabled": false,
@@ -141,7 +141,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 10,
+    "pk": 11,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -155,7 +155,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 11,
+    "pk": 12,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -169,7 +169,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 12,
+    "pk": 13,
     "fields": {
       "control_type": "datepicker",
       "disabled": true,
@@ -181,7 +181,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 13,
+    "pk": 14,
     "fields": {
       "control_type": "datepicker",
       "disabled": true,
@@ -193,7 +193,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 14,
+    "pk": 15,
     "fields": {
       "control_type": "datepicker",
       "disabled": true,
@@ -205,7 +205,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 15,
+    "pk": 16,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -219,7 +219,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 16,
+    "pk": 17,
     "fields": {
       "control_type": "datepicker",
       "disabled": true,
@@ -231,7 +231,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 17,
+    "pk": 18,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -245,7 +245,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 18,
+    "pk": 19,
     "fields": {
       "control_type": "datepicker",
       "disabled": true,
@@ -257,7 +257,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 19,
+    "pk": 20,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -271,7 +271,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 20,
+    "pk": 21,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -285,7 +285,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 21,
+    "pk": 22,
     "fields": {
       "control_type": "dropdown",
       "disabled": false,
@@ -298,7 +298,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 22,
+    "pk": 23,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -312,7 +312,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 23,
+    "pk": 24,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -326,7 +326,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 24,
+    "pk": 25,
     "fields": {
       "control_type": "dropdown",
       "disabled": false,
@@ -339,7 +339,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 25,
+    "pk": 26,
     "fields": {
       "control_type": "dropdown",
       "disabled": false,
@@ -352,7 +352,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 26,
+    "pk": 27,
     "fields": {
       "control_type": "dropdown",
       "disabled": false,
@@ -365,7 +365,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 27,
+    "pk": 28,
     "fields": {
       "control_type": "dropdown",
       "disabled": false,
@@ -378,7 +378,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 28,
+    "pk": 29,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -392,7 +392,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 29,
+    "pk": 30,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -406,7 +406,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 30,
+    "pk": 31,
     "fields": {
       "control_type": "dropdown",
       "disabled": false,
@@ -419,7 +419,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 31,
+    "pk": 32,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -433,7 +433,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 32,
+    "pk": 33,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -447,7 +447,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 33,
+    "pk": 34,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -461,7 +461,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 34,
+    "pk": 35,
     "fields": {
       "control_type": "datepicker",
       "disabled": true,
@@ -473,7 +473,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 35,
+    "pk": 36,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -487,7 +487,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 36,
+    "pk": 37,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -501,7 +501,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 37,
+    "pk": 38,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -515,7 +515,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 38,
+    "pk": 39,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -529,7 +529,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 39,
+    "pk": 40,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -543,9 +543,9 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 40,
+    "pk": 41,
     "fields": {
-      "control_type": "textbox",
+      "control_type": "dropdown",
       "disabled": false,
       "form": "eventDescriptionView",
       "icon": "accessible",
@@ -557,7 +557,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 41,
+    "pk": 42,
     "fields": {
       "control_type": "datepicker",
       "disabled": true,
@@ -569,7 +569,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 42,
+    "pk": 43,
     "fields": {
       "control_type": "dropdown",
       "disabled": false,
@@ -582,7 +582,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 43,
+    "pk": 44,
     "fields": {
       "control_type": "multipledropdown",
       "disabled": false,
@@ -595,7 +595,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 44,
+    "pk": 45,
     "fields": {
       "control_type": "multipledropdown",
       "disabled": false,
@@ -608,7 +608,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 45,
+    "pk": 46,
     "fields": {
       "control_type": "multipledropdown",
       "disabled": false,
@@ -621,7 +621,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 46,
+    "pk": 47,
     "fields": {
       "control_type": "multipledropdown",
       "disabled": false,
@@ -634,7 +634,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 47,
+    "pk": 48,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -648,7 +648,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 48,
+    "pk": 49,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -662,7 +662,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 49,
+    "pk": 50,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -676,7 +676,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 50,
+    "pk": 51,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -690,7 +690,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 51,
+    "pk": 52,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -704,7 +704,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 52,
+    "pk": 53,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -718,7 +718,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 53,
+    "pk": 54,
     "fields": {
       "control_type": "userdropdown",
       "disabled": false,
@@ -732,7 +732,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 54,
+    "pk": 55,
     "fields": {
       "control_type": "datepicker",
       "disabled": true,
@@ -744,7 +744,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 55,
+    "pk": 56,
     "fields": {
       "control_type": "datepicker",
       "disabled": true,
@@ -756,7 +756,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 56,
+    "pk": 57,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -770,7 +770,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 57,
+    "pk": 58,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -784,7 +784,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 58,
+    "pk": 59,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -798,7 +798,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 59,
+    "pk": 60,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -812,7 +812,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 60,
+    "pk": 61,
     "fields": {
       "control_type": "userdropdown",
       "disabled": false,
@@ -825,7 +825,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 61,
+    "pk": 62,
     "fields": {
       "control_type": "datepicker",
       "disabled": true,
@@ -837,7 +837,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 62,
+    "pk": 63,
     "fields": {
       "control_type": "userdropdown",
       "disabled": false,
@@ -850,7 +850,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 63,
+    "pk": 64,
     "fields": {
       "control_type": "datepicker",
       "disabled": true,
@@ -862,7 +862,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 64,
+    "pk": 65,
     "fields": {
       "control_type": "textbox",
       "disabled": true,
