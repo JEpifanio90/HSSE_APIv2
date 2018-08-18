@@ -120,7 +120,7 @@ class Report(models.Model):
     shift = models.CharField(max_length=3, blank=False, null=False, choices=Constants.COMMON_CHOICES)
     location = models.CharField(max_length=120, blank=False, null=False)
     exact_location = models.CharField(max_length=120, blank=False, null=False)
-    incident_date = models.DateTimeField(auto_now=False, auto_now_add=False)
+    incident_date = models.DateField(auto_now=False, auto_now_add=False)
     date_reported = models.DateField(auto_now=False, auto_now_add=False)
     first_day_lost = models.DateField(auto_now=False, auto_now_add=False)
     total_days_lost = models.IntegerField(blank=False, null=False, default=0)
