@@ -121,7 +121,7 @@ class ReportSerializer(serializers.ModelSerializer):
             'completion_date',
             'other_participants',
             'approved_by',
-            'apporved_date',
+            'approved_date',
             'ehhs_leader',
             'ehhs_approval',
             'incident_description',
