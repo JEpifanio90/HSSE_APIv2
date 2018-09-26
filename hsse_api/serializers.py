@@ -97,7 +97,6 @@ class ReportSerializer(serializers.ModelSerializer):
             'location_at_event',
             'time_in_position',
             'experience_in_position',
-            'date',
             'contact_agent',
             'work_area',
             'exact_area',
@@ -148,7 +147,7 @@ class MonthlyReportSerializer(serializers.ModelSerializer):
         )
 
 class UserSerializer(serializers.ModelSerializer):
-    site = serializers.PrimaryKeyRelatedField(queryset=models.Site.objects.all())
+    site = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = models.User

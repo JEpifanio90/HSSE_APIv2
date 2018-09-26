@@ -142,7 +142,6 @@ class Report(models.Model):
     location_at_event = models.CharField(max_length=120, blank=False, null=False)
     time_in_position = models.IntegerField(blank=False, null=False)
     experience_in_position = models.IntegerField(blank=False, null=False)
-    date = models.DateField(auto_now=False, auto_now_add=False)
     contact_agent = models.CharField(max_length=120, blank=False, null=False)
     work_area = models.CharField(max_length=120, blank=False, null=False)
     exact_area = models.CharField(max_length=120, blank=False, null=False)
