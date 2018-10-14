@@ -43,6 +43,8 @@ class EnvironmentalIndicator(models.Model):
     waste_to_landfield = models.IntegerField(blank=False, null=False)
     waste_recycled = models.IntegerField(blank=False, null=False)
     site = models.ForeignKey(Site, on_delete=models.CASCADE)
+    month_created = models.IntegerField(blank=False, null=False)
+    year_created = models.IntegerField(blank=False, null=False)
     objects = models.Manager()
 
 class MonthlyReport(models.Model):
@@ -54,6 +56,8 @@ class MonthlyReport(models.Model):
     no_reports_closed = models.IntegerField(blank=False, null=False)
     no_reports_in_progress = models.IntegerField(blank=False, null=False)
     no_reports_open = models.IntegerField(blank=False, null=False)
+    month_created = models.IntegerField(blank=False, null=False)
+    year_created = models.IntegerField(blank=False, null=False)
     objects = models.Manager()
 
 class SafetyActivity(models.Model):
@@ -172,6 +176,8 @@ class Report(models.Model):
     incident_contributing_actions = models.TextField(blank=False, null=False)
     incident_contributing_conditions = models.TextField(blank=False, null=False)
     created_by = models.ForeignKey(User, related_name='report_creator', on_delete=models.CASCADE, blank=True, null=True)
+    month_created = models.IntegerField(blank=False, null=False)
+    year_created = models.IntegerField(blank=False, null=False)
     objects = models.Manager()
 
 class Question(models.Model):

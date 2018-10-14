@@ -50,7 +50,9 @@ class EnvironmentalSerializer(serializers.ModelSerializer):
             'waste_sold',
             'waste_to_landfield',
             'waste_recycled',
-            'site'
+            'site',
+            'month_created',
+            'year_created'
         )
 
 class ReportSerializer(serializers.ModelSerializer):
@@ -126,7 +128,9 @@ class ReportSerializer(serializers.ModelSerializer):
             'incident_description',
             'incident_contributing_actions',
             'incident_contributing_conditions',
-            'created_by'
+            'created_by',
+            'month_created',
+            'year_created'
         )
         extra_kwargs = {'case_number': {'write_only': True}}
 
@@ -143,7 +147,9 @@ class MonthlyReportSerializer(serializers.ModelSerializer):
             'no_reports_overdue',
             'no_reports_closed',
             'no_reports_in_progress',
-            'no_reports_open'
+            'no_reports_open',
+            'month_created',
+            'year_created'
         )
 
 class UserSerializer(serializers.ModelSerializer):
