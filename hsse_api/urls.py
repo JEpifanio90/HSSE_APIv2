@@ -18,5 +18,6 @@ urlpatterns = [
     url(r'^login/?$', views.Login.as_view()),
     url(r'^signin/?$', views.SignIn.as_view()),
     url(r'^public/sites?$', views.Public.as_view()),
+    url(r'^dashboard/?$', views.Dashboard.as_view()),
     url(r'^', include(router.urls))
 ]
