@@ -198,3 +198,7 @@ class Question_Serializer(serializers.ModelSerializer):
             'required',
             'value'
         )
+
+class Date_Serializer(serializers.Serializer):
+    month_created = serializers.IntegerField()
+    year_created = serializers.IntegerField()

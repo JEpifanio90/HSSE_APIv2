@@ -8,7 +8,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from hsse_api import models
 from hsse_api import serializers
-import pdb
 
 class Login(ObtainAuthToken):
 
@@ -53,11 +52,12 @@ class Public(APIView):
         return Response(serialized_sites.data, status=status.HTTP_200_OK)
 
 class Dashboard(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
 
     def post(self, request, *args, **kwargs):
         date_range = serializers.Date_Serializer(data=request.data, context={'request': request})
         if date_range.is_valid():
-            pdb.set_trace()
             reports = models.MonthlyReport.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created'])
             indicators = models.EnvironmentalIndicator.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created'])
             serialized_report = serializers.MonthlyReportSerializer(reports, many=True)
