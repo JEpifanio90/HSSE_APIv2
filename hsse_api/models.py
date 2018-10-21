@@ -75,6 +75,7 @@ class User(AbstractBaseUser, models.Model):
     email = models.EmailField(max_length=255, blank=False, unique=True)
     name = models.CharField(max_length=255, blank=False)
     site = models.ForeignKey(Site, on_delete=models.CASCADE)
+    contractor = models.BooleanField(default=False);
     objects = UserManager()
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name', 'password']
@@ -121,6 +122,7 @@ class Report(models.Model):
     address = models.CharField(max_length=120, blank=False, null=False)
     regular_department = models.CharField(max_length=120, blank=False, null=False)
     regular_job_group = models.CharField(max_length=120, blank=False, null=False)
+    status = models.CharField(max_length=11, choices=Constants.STATUS_CHOICES, default="O")
     shift = models.CharField(max_length=3, blank=False, null=False, choices=Constants.COMMON_CHOICES)
     location = models.CharField(max_length=120, blank=False, null=False)
     exact_location = models.CharField(max_length=120, blank=False, null=False)

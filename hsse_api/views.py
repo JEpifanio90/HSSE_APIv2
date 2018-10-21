@@ -58,13 +58,23 @@ class Dashboard(APIView):
     def post(self, request, *args, **kwargs):
         date_range = serializers.Date_Serializer(data=request.data, context={'request': request})
         if date_range.is_valid():
-            reports = models.MonthlyReport.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created'])
-            indicators = models.EnvironmentalIndicator.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created'])
-            serialized_report = serializers.MonthlyReportSerializer(reports, many=True)
-            serialized_indicator = serializers.EnvironmentalSerializer(indicators, many=True)
+            reports = len(models.MonthlyReport.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created']))
+            open_reports = len(models.Report.objects.filter(status="0"))
+            in_progress_reports = len(models.Report.objects.filter(status="IP"))
+            closed_reports = len(models.Report.objects.filter(status="CL"))
+            overdue_reports = len(models.Report.objects.filter(status="OV"))
+            indicators = len(models.EnvironmentalIndicator.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created']))
+            contractors = len(models.User.objects.filter(contractor=True))
+            employees = len(models.User.objects.filter(contractor=False))
             data = {
-                "reports": serialized_report.data,
-                "indicators": serialized_indicator.data
+                "reports": reports,
+                "open_reports": open_reports,
+                "in_progress_reports": in_progress_reports,
+                "closed_reports": closed_reports,
+                "overdue_reports": overdue_reports,
+                "indicators": indicators,
+                "contractors": contractors,
+                "employees": employees
             }
             return Response(data, status=status.HTTP_200_OK)
         return Response(date_range.errors, status=status.HTTP_400_BAD_REQUEST)
