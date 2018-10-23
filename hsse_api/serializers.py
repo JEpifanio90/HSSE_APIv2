@@ -7,25 +7,6 @@ class AuditSerializer(serializers.ModelSerializer):
         model = models.AuditInspection
         fields = ('id', 'audit_type', 'due_date', 'created_by')
 
-class CorrectiveSerializer(serializers.ModelSerializer):
-    ehhs_leader = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
-    manager = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
-    supervisor = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
-    created_by = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
-    class Meta:
-        model = models.CorrectiveAction
-        fields = (
-            'id',
-            'action',
-            'due_date',
-            'status',
-            'supervisor',
-            'other_participants',
-            'ehhs_leader',
-            'manager',
-            'created_by'
-        )
-
 class CommunitySerializer(serializers.ModelSerializer):
     site = serializers.PrimaryKeyRelatedField(queryset=models.Site.objects.all())
     created_by = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())

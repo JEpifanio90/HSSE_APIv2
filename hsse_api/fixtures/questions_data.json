@@ -861,5 +861,33 @@
       "label": "This report was created by",
       "required": true
     }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 65,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "approvalsView",
+      "icon": "feedback",
+      "input_type": "number",
+      "key": "month_created",
+      "label": "Month Created",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 66,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "approvalsView",
+      "icon": "feedback",
+      "input_type": "number",
+      "key": "year_created",
+      "label": "Year Created",
+      "required": true
+    }
   }
 ]

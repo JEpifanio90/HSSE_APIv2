@@ -91,12 +91,6 @@ class AuditsViewSet(viewsets.ModelViewSet):
     queryset = models.AuditInspection.objects.all()
     permission_classes = (permissions.IsAuthenticated,)
 
-class CorrectivesViewSet(viewsets.ModelViewSet):
-    authentication_classes = (TokenAuthentication,)
-    serializer_class = serializers.CorrectiveSerializer
-    queryset = models.CorrectiveAction.objects.all()
-    permission_classes = (permissions.IsAuthenticated,)
-
 class CommunitiesViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     serializer_class = serializers.CommunitySerializer

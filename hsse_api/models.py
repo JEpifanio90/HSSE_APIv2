@@ -91,17 +91,6 @@ class AuditInspection(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     objects = models.Manager()
 
-class CorrectiveAction(models.Model):
-    action = models.CharField(max_length=120, blank=False)
-    due_date = models.DateField(auto_now=False, auto_now_add=False)    
-    ehhs_leader = models.ForeignKey(User, related_name='CorrectiveAction_leader', on_delete=models.CASCADE, blank=True, null=True)
-    manager = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
-    other_participants = models.CharField(max_length=60)
-    status = models.CharField(max_length=11, choices=Constants.STATUS_CHOICES, default="O")
-    supervisor = models.ForeignKey(User, related_name='CorrectiveAction_supervisor', on_delete=models.CASCADE, blank=True, null=True)
-    created_by = models.ForeignKey(User, related_name='CorrectiveAction_user', on_delete=models.CASCADE, blank=True, null=True)
-    objects = models.Manager()
-
 class EmployeeCommunityActivity(models.Model):
     activity_number = models.IntegerField(blank=False, null=False)
     activity_type = models.CharField(max_length=50, blank=False, null=False)
