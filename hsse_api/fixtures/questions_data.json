@@ -889,5 +889,19 @@
       "label": "Year Created",
       "required": true
     }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 67,
+    "fields": {
+      "control_type": "dropdown",
+      "disabled": false,
+      "form": "approvalsView",
+      "icon": "location_city",
+      "options": "",
+      "key": "status",
+      "label": "Status",
+      "required": true
+    }
   }
 ]
