@@ -66,15 +66,12 @@ class Dashboard(APIView):
             indicators = len(models.EnvironmentalIndicator.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created']))
             contractors = len(models.User.objects.filter(contractor=True))
             employees = len(models.User.objects.filter(contractor=False))
+            monthly = len(models.MonthlyReport.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created']))
+            activities = len(models.SafetyActivity.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created']))
             data = {
-                "reports": reports,
-                "open_reports": open_reports,
-                "in_progress_reports": in_progress_reports,
-                "closed_reports": closed_reports,
-                "overdue_reports": overdue_reports,
-                "indicators": indicators,
-                "contractors": contractors,
-                "employees": employees
+                "reports": [open_reports, in_progress_reports, closed_reports, overdue_reports],
+                "users": [employees, contractors],
+                "indicators": [indicators, monthly, activities]
             }
             return Response(data, status=status.HTTP_200_OK)
         return Response(date_range.errors, status=status.HTTP_400_BAD_REQUEST)
