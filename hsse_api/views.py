@@ -67,7 +67,7 @@ class Dashboard(APIView):
             contractors = len(models.User.objects.filter(contractor=True))
             employees = len(models.User.objects.filter(contractor=False))
             monthly = len(models.MonthlyReport.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created']))
-            activities = len(models.SafetyActivity.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created']))
+            activities = len(models.SafetyActivity.objects.all())
             data = {
                 "reports": [open_reports, in_progress_reports, closed_reports, overdue_reports],
                 "users": [employees, contractors],
