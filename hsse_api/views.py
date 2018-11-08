@@ -51,30 +51,38 @@ class Public(APIView):
 
         return Response(serialized_sites.data, status=status.HTTP_200_OK)
 
+# ! This sucks biiiiig time. RE-DO
 class Dashboard(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
 
     def post(self, request, *args, **kwargs):
-        # Reports
-        reports = len(models.MonthlyReport.objects.filter(month_created=month, year_created=year))
-        open_reports = len(models.Report.objects.filter(status="0", month_created=month, year_created=year))
-        in_progress_reports = len(models.Report.objects.filter(status="IP", month_created=month, year_created=year))
-        closed_reports = len(models.Report.objects.filter(status="CL", month_created=month, year_created=year))
-        overdue_reports = len(models.Report.objects.filter(status="OV", month_created=month, year_created=year))
-        # Users
-        contractors = len(models.User.objects.filter(contractor=True, month_created=month, year_created=year))
-        employees = len(models.User.objects.filter(contractor=False, month_created=month, year_created=year))
-        # Indicators
-        indicators = len(models.EnvironmentalIndicator.objects.filter(month_created=month, year_created=year))
-        monthly = len(models.MonthlyReport.objects.filter(month_created=month, year_created=year))
-        activities = len(models.SafetyActivity.objects.filter(month_created=month, year_created=year))
         date_range = serializers.Date_Serializer(data=request.data, context={'request': request})
         if date_range.is_valid():
+            # Reports
+            reports = len(models.MonthlyReport.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created']))
+            open_reports = len(models.Report.objects.filter(status="0", month_created=date_range.data['month_created'], year_created=date_range.data['year_created']))
+            in_progress_reports = len(models.Report.objects.filter(status="IP", month_created=date_range.data['month_created'], year_created=date_range.data['year_created']))
+            closed_reports = len(models.Report.objects.filter(status="CL", month_created=date_range.data['month_created'], year_created=date_range.data['year_created']))
+            overdue_reports = len(models.Report.objects.filter(status="OV", month_created=date_range.data['month_created'], year_created=date_range.data['year_created']))
+            # Users
+            contractors = len(models.User.objects.filter(contractor=True, month_created=date_range.data['month_created'], year_created=date_range.data['year_created']))
+            employees = len(models.User.objects.filter(contractor=False, month_created=date_range.data['month_created'], year_created=date_range.data['year_created']))
+            # Indicators
+            indicators = models.EnvironmentalIndicator.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created'])
+            indicators_count = len(indicators)
+            monthly = models.MonthlyReport.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created'])
+            monthly_count = len(monthly)
+            activities = models.SafetyActivity.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created'])
+            activities_count =  len(activities)
+
             data = {
                 "reports": [open_reports, in_progress_reports, closed_reports, overdue_reports],
                 "users": [employees, contractors],
-                "indicators": [indicators, monthly, activities]
+                "indicators": [indicators_count, monthly_count, activities_count],
+                "indicatorsData": indicators,
+                "monthlyData": monthly,
+                "activitiesData": activities
             }
             return Response(data, status=status.HTTP_200_OK)
         return Response(date_range.errors, status=status.HTTP_400_BAD_REQUEST)
