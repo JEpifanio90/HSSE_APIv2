@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from hsse_api import models
 from hsse_api import serializers
+import pdb
 
 class Login(ObtainAuthToken):
 
@@ -60,25 +61,25 @@ class Dashboard(APIView):
         date_range = serializers.Date_Serializer(data=request.data, context={'request': request})
         if date_range.is_valid():
             # Reports
-            reports = len(models.MonthlyReport.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created']))
-            open_reports = len(models.Report.objects.filter(status="0", month_created=date_range.data['month_created'], year_created=date_range.data['year_created']))
-            in_progress_reports = len(models.Report.objects.filter(status="IP", month_created=date_range.data['month_created'], year_created=date_range.data['year_created']))
-            closed_reports = len(models.Report.objects.filter(status="CL", month_created=date_range.data['month_created'], year_created=date_range.data['year_created']))
-            overdue_reports = len(models.Report.objects.filter(status="OV", month_created=date_range.data['month_created'], year_created=date_range.data['year_created']))
+            reports = models.Report.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created'])
+            open_reports = len(reports.filter(status="O"))
+            in_progress_reports = len(reports.filter(status="IP"))
+            closed_reports = len(reports.filter(status="CL"))
+            overdue_reports = len(reports.filter(status="OV"))
             # Users
-            contractors = len(models.User.objects.filter(contractor=True, month_created=date_range.data['month_created'], year_created=date_range.data['year_created']))
-            employees = len(models.User.objects.filter(contractor=False, month_created=date_range.data['month_created'], year_created=date_range.data['year_created']))
+            users = models.User.objects.all()
+            contractors = len(users.filter(contractor=True))
             # Indicators
             indicators = models.EnvironmentalIndicator.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created'])
             indicators_count = len(indicators)
             monthly = models.MonthlyReport.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created'])
             monthly_count = len(monthly)
-            activities = models.SafetyActivity.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created'])
-            activities_count =  len(activities)
+            activities = models.SafetyActivity.objects.all()
+            activities_count = len(activities)
 
             data = {
                 "reports": [open_reports, in_progress_reports, closed_reports, overdue_reports],
-                "users": [employees, contractors],
+                "users": [len(users), contractors],
                 "indicators": [indicators_count, monthly_count, activities_count],
                 "indicatorsData": indicators,
                 "monthlyData": monthly,
