@@ -81,9 +81,9 @@ class Dashboard(APIView):
                 "reports": [open_reports, in_progress_reports, closed_reports, overdue_reports],
                 "users": [len(users), contractors],
                 "indicators": [indicators_count, monthly_count, activities_count],
-                "environmentalIndicators": indicators.values(),
-                "monthlyData": monthly.values(),
-                "activitiesData": activities.values()
+                "environmentalIndicators": list(indicators.values()),
+                "monthlyData": list(monthly.values()),
+                "activitiesData": list(activities.values())
             }
             return Response(data, status=status.HTTP_200_OK)
         return Response(date_range.errors, status=status.HTTP_400_BAD_REQUEST)
