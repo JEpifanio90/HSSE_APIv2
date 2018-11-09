@@ -81,7 +81,6 @@ class Dashboard(APIView):
                 "reports": [open_reports, in_progress_reports, closed_reports, overdue_reports],
                 "users": [len(users), contractors],
                 "indicators": [indicators_count, monthly_count, activities_count],
-                "indicatorsData": indicators,
                 "monthlyData": monthly,
                 "activitiesData": activities
             }
