@@ -412,7 +412,7 @@
       "disabled": false,
       "form": "eventDescriptionView",
       "icon": "question_answer",
-      "key": "question-circle",
+      "key": "at_operation",
       "label": "At Operation?",
       "required": true
     }
