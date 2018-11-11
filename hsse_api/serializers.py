@@ -5,7 +5,7 @@ class AuditSerializer(serializers.ModelSerializer):
     created_by = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
     class Meta:
         model = models.AuditInspection
-        fields = ('id', 'audit_type', 'due_date', 'created_by')
+        fields = ('id', 'audit_type', 'due_date', 'created_by', 'created_on')
 
 class CommunitySerializer(serializers.ModelSerializer):
     site = serializers.PrimaryKeyRelatedField(queryset=models.Site.objects.all())
@@ -13,7 +13,7 @@ class CommunitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.EmployeeCommunityActivity
-        fields = ('id', 'activity_number', 'activity_type', 'community_act', 'name', 'group', 'site', 'created_by')
+        fields = ('id', 'activity_number', 'activity_type', 'community_act', 'name', 'group', 'site', 'created_by', 'created_on')
 
 class EnvironmentalSerializer(serializers.ModelSerializer):
     site = serializers.PrimaryKeyRelatedField(queryset=models.Site.objects.all())
@@ -32,8 +32,7 @@ class EnvironmentalSerializer(serializers.ModelSerializer):
             'waste_to_landfield',
             'waste_recycled',
             'site',
-            'month_created',
-            'year_created'
+            'created_on'
         )
 
 class ReportSerializer(serializers.ModelSerializer):
@@ -110,8 +109,7 @@ class ReportSerializer(serializers.ModelSerializer):
             'incident_contributing_actions',
             'incident_contributing_conditions',
             'created_by',
-            'month_created',
-            'year_created'
+            'created_on'
         )
         extra_kwargs = {'case_number': {'write_only': True}}
 
@@ -129,8 +127,7 @@ class MonthlyReportSerializer(serializers.ModelSerializer):
             'no_reports_closed',
             'no_reports_in_progress',
             'no_reports_open',
-            'month_created',
-            'year_created'
+            'created_on'
         )
 
 class UserSerializer(serializers.ModelSerializer):
@@ -138,14 +135,14 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.User
-        fields = ('id', 'email', 'name', 'password', 'site')
+        fields = ('id', 'email', 'name', 'password', 'site', 'created_on')
         extra_kwargs = {'password': {'write_only': True}}
 
 class SafetyActivitySerializer(serializers.ModelSerializer):
     site = serializers.PrimaryKeyRelatedField(queryset=models.Site.objects.all())
     class Meta:
         model = models.SafetyActivity
-        fields = ('id', 'activity_name', 'comments', 'site')
+        fields = ('id', 'activity_name', 'comments', 'site', 'created_on')
 
 class SiteSerializer(serializers.ModelSerializer):
 
@@ -177,9 +174,10 @@ class Question_Serializer(serializers.ModelSerializer):
             'label',
             'options',
             'required',
-            'value'
+            'value',
+            'created_on'
         )
 
 class Date_Serializer(serializers.Serializer):
-    month_created = serializers.IntegerField()
-    year_created = serializers.IntegerField()
+    from_date = serializers.DateField()
+    to_date = serializers.DateField()

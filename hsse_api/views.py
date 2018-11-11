@@ -58,32 +58,33 @@ class Dashboard(APIView):
     serializer_class = serializers.EnvironmentalSerializer
 
     def post(self, request, *args, **kwargs):
-        date_range = serializers.Date_Serializer(data=request.data, context={'request': request})
-        if date_range.is_valid():
+        dates = serializers.Date_Serializer(data=request.data, context={'request': request})
+        if dates.is_valid():
             # Reports
-            reports = models.Report.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created'])
-            open_reports = len(reports.filter(status="O"))
-            in_progress_reports = len(reports.filter(status="IP"))
-            closed_reports = len(reports.filter(status="CL"))
-            overdue_reports = len(reports.filter(status="OV"))
+            reports = models.Report.objects.all();
+            open_reports = len(reports.filter(status="O", created_on=dates.data['from_date'])) + len(reports.filter(status="O", created_on=dates.data['to_date']))
+            in_progress_reports = len(reports.filter(status="IP", created_on=dates.data['from_date'])) + len(reports.filter(status="IP", created_on=dates.data['to_date']))
+            closed_reports = len(reports.filter(status="CL", created_on=dates.data['from_date'])) + len(reports.filter(status="CL", created_on=dates.data['to_date']))
+            overdue_reports = len(reports.filter(status="OV", created_on=dates.data['from_date'])) + len(reports.filter(status="OV", created_on=dates.data['to_date']))
             # Users
             users = models.User.objects.all()
-            contractors = len(users.filter(contractor=True))
+            users_count = len(users.filter(created_on=dates.data['from_date'])) + len(users.filter(created_on=dates.data['to_date']))
+            contractors = len(users.filter(contractor=True, created_on=dates.data['from_date'])) + len(users.filter(contractor=True, created_on=dates.data['to_date']))
             # Indicators
-            indicators = models.EnvironmentalIndicator.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created'])
-            indicators_count = len(indicators)
-            monthly = models.MonthlyReport.objects.filter(month_created=date_range.data['month_created'], year_created=date_range.data['year_created'])
-            monthly_count = len(monthly)
+            indicators = models.EnvironmentalIndicator.objects.all()
+            indicators_count = len(indicators.filter(created_on=dates.data['from_date'])) + len(indicators.filter(created_on=dates.data['to_date']))
+            monthly = models.MonthlyReport.objects.all()
+            monthly_count = len(monthly.filter(created_on=dates.data['from_date'])) + len(monthly.filter(created_on=dates.data['to_date']))
             activities = models.SafetyActivity.objects.all()
-            activities_count = len(activities)
+            activities_count = len(activities.filter(created_on=dates.data['from_date'])) + len(activities.filter(created_on=dates.data['to_date']))
 
             data = {
                 "reports": [open_reports, in_progress_reports, closed_reports, overdue_reports],
-                "users": [len(users), contractors],
+                "users": [users_count, contractors],
                 "indicators": [indicators_count, monthly_count, activities_count],
             }
             return Response(data, status=status.HTTP_200_OK)
-        return Response(date_range.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(dates.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UsersViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
