@@ -174,8 +174,7 @@ class Question_Serializer(serializers.ModelSerializer):
             'label',
             'options',
             'required',
-            'value',
-            'created_on'
+            'value'
         )
 
 class Date_Serializer(serializers.Serializer):
