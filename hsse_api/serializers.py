@@ -178,5 +178,5 @@ class Question_Serializer(serializers.ModelSerializer):
         )
 
 class Date_Serializer(serializers.Serializer):
-    from_date = serializers.DateField()
-    to_date = serializers.DateField()
+    start_date = serializers.DateField()
+    end_date = serializers.DateField()
