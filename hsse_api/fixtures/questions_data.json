@@ -903,5 +903,472 @@
       "label": "Status",
       "required": true
     }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 68,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "userLoginView",
+      "icon": "envelope",
+      "input_type": "text",
+      "key": "email",
+      "label": "Email Account",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 69,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "userLoginView",
+      "icon": "key",
+      "input_type": "text",
+      "options": "",
+      "key": "password",
+      "label": "Password",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 70,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "error": "What?! No first name or alias?",
+      "form": "newUserView",
+      "icon": "user",
+      "input_type": "text",
+      "key": "name",
+      "label": "Given Name",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 71,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "newUserView",
+      "icon": "envelope",
+      "input_type": "text",
+      "options": "",
+      "key": "email",
+      "label": "Email Account",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 72,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "newUserView",
+      "icon": "key",
+      "input_type": "password",
+      "key": "password",
+      "label": "Password",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 73,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "form": "newUserView",
+      "icon": "unlock-alt",
+      "input_type": "password",
+      "options": "",
+      "key": "password_confirmation",
+      "label": "Password Confirmation",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 74,
+    "fields": {
+      "control_type": "userdropdown",
+      "disabled": false,
+      "error": "What?! No first name or alias?",
+      "form": "newUserView",
+      "icon": "globe",
+      "input_type": "text",
+      "key": "site",
+      "label": "Site of user",
+      "options": [],
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 75,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "error": "What?! We need the activity name, please",
+      "form": "safetyActivitiesView",
+      "icon": "file-alt",
+      "input_type": "text",
+      "key": "activity_name",
+      "label": "Activity Name",
+      "options": [],
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 76,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "error": "What?! No comments?",
+      "form": "safetyActivitiesView",
+      "icon": "comment-alt",
+      "input_type": "text",
+      "key": "comments",
+      "label": "Comments",
+      "options": [],
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 77,
+    "fields": {
+      "control_type": "sitesDropdown",
+      "disabled": false,
+      "error": "",
+      "form": "safetyActivitiesView",
+      "icon": "globe",
+      "input_type": "text",
+      "key": "site",
+      "label": "Where will this activity take place?",
+      "options": [],
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 78,
+    "fields": {
+      "control_type": "textbox",
+      "error": "What?!",
+      "disabled": false,
+      "form": "environmentalIndicatorsView",
+      "icon": "solar-panel",
+      "input_type": "number",
+      "key": "renewable_electricity_consumed",
+      "label": "Renewable electricity consumed",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 79,
+    "fields": {
+      "control_type": "textbox",
+      "error": "What?!",
+      "disabled": false,
+      "form": "environmentalIndicatorsView",
+      "icon": "bolt",
+      "input_type": "number",
+      "options": "",
+      "key": "non_renewable_electricity_consumed",
+      "label": "Non renewable electricity consumed",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 80,
+    "fields": {
+      "control_type": "textbox",
+      "error": "What?!",
+      "disabled": false,
+      "form": "environmentalIndicatorsView",
+      "icon": "burn",
+      "input_type": "number",
+      "key": "consumed_gas",
+      "label": "Consumed gas",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 81,
+    "fields": {
+      "control_type": "textbox",
+      "error": "What?!",
+      "disabled": false,
+      "form": "environmentalIndicatorsView",
+      "icon": "tint",
+      "input_type": "number",
+      "options": "",
+      "key": "consumed_water",
+      "label": "Consumed water",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 82,
+    "fields": {
+      "control_type": "textbox",
+      "error": "What?!",
+      "disabled": false,
+      "form": "environmentalIndicatorsView",
+      "icon": "skull-crossbones",
+      "input_type": "number",
+      "key": "dangerous_waste_generated",
+      "label": "Hazardous waste generated",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 83,
+    "fields": {
+      "control_type": "textbox",
+      "error": "What?!",
+      "disabled": false,
+      "form": "environmentalIndicatorsView",
+      "icon": "exclamation-triangle",
+      "input_type": "number",
+      "options": "",
+      "key": "non_dangerous_waste_generated",
+      "label": "Non Hazardous waste generated",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 84,
+    "fields": {
+      "control_type": "textbox",
+      "error": "What?!",
+      "disabled": false,
+      "form": "environmentalIndicatorsView",
+      "icon": "hand-holding-usd",
+      "input_type": "number",
+      "key": "waste_sold",
+      "label": "Waste Sold",
+      "options": [],
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 85,
+    "fields": {
+      "control_type": "textbox",
+      "error": "What?!",
+      "disabled": false,
+      "form": "environmentalIndicatorsView",
+      "icon": "trash",
+      "input_type": "number",
+      "key": "waste_to_landfield",
+      "label": "Waste to landfield",
+      "options": [],
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 86,
+    "fields": {
+      "control_type": "textbox",
+      "error": "What?!",
+      "disabled": false,
+      "form": "environmentalIndicatorsView",
+      "icon": "recycle",
+      "input_type": "number",
+      "key": "waste_recycled",
+      "label": "Waste recycled",
+      "options": [],
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 87,
+    "fields": {
+      "control_type": "sitesDropdown",
+      "disabled": false,
+      "error": "",
+      "form": "environmentalIndicatorsView",
+      "icon": "globe",
+      "input_type": "text",
+      "key": "site",
+      "label": "Where will this activity take place?",
+      "options": [],
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 88,
+    "fields": {
+      "control_type": "datepicker",
+      "error": "What?!",
+      "disabled": false,
+      "form": "dashboardView",
+      "icon": "calendar",
+      "input_type": "date",
+      "key": "start_date",
+      "label": "From",
+      "options": [],
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 89,
+    "fields": {
+      "control_type": "sitesDropdown",
+      "disabled": false,
+      "error": "",
+      "form": "dashboardView",
+      "icon": "calendar",
+      "input_type": "date",
+      "key": "end_date",
+      "label": "To",
+      "options": [],
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 90,
+    "fields": {
+      "control_type": "textbox",
+      "error": "What?!",
+      "disabled": false,
+      "form": "monthlyReportsView",
+      "icon": "users",
+      "input_type": "number",
+      "key": "no_employees",
+      "label": "Number of Employees",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 91,
+    "fields": {
+      "control_type": "textbox",
+      "error": "What?!",
+      "disabled": false,
+      "form": "monthlyReportsView",
+      "icon": "user-friends",
+      "input_type": "number",
+      "options": "",
+      "key": "no_contractors",
+      "label": "Number Of Contractors",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 92,
+    "fields": {
+      "control_type": "textbox",
+      "error": "What?!",
+      "disabled": false,
+      "form": "monthlyReportsView",
+      "icon": "hourglass",
+      "input_type": "number",
+      "key": "worked_employee_hours",
+      "label": "Worked Employee Hours",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 93,
+    "fields": {
+      "control_type": "textbox",
+      "error": "What?!",
+      "disabled": false,
+      "form": "monthlyReportsView",
+      "icon": "hourglass-half",
+      "input_type": "number",
+      "options": "",
+      "key": "worked_contractor_hours",
+      "label": "Worked Contractor Hours",
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 94,
+    "fields": {
+      "control_type": "textbox",
+      "error": "What?!",
+      "disabled": false,
+      "form": "monthlyReportsView",
+      "icon": "th-list",
+      "input_type": "number",
+      "key": "no_reports_overdue",
+      "label": "Number Of Actions Overdue",
+      "options": [],
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 95,
+    "fields": {
+      "control_type": "textbox",
+      "error": "What?!",
+      "disabled": false,
+      "form": "monthlyReportsView",
+      "icon": "list-ol",
+      "input_type": "number",
+      "key": "no_reports_closed",
+      "label": "Number Of Actions Closed",
+      "options": [],
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 96,
+    "fields": {
+      "control_type": "textbox",
+      "error": "What?!",
+      "disabled": false,
+      "form": "monthlyReportsView",
+      "icon": "list-ul",
+      "input_type": "number",
+      "key": "no_reports_in_progress",
+      "label": "Number Of Actions In Progress",
+      "options": [],
+      "required": true
+    }
+  },
+  {
+    "model": "hsse_api.Question",
+    "pk": 97,
+    "fields": {
+      "control_type": "textbox",
+      "disabled": false,
+      "error": "",
+      "form": "monthlyReportsView",
+      "icon": "list",
+      "input_type": "number",
+      "key": "no_reports_open",
+      "label": "Number Of Actions Open",
+      "options": [],
+      "required": true
+    }
   }
 ]

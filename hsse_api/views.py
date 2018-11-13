@@ -121,6 +121,11 @@ class SitesViewSet(viewsets.ModelViewSet):
     queryset = models.Site.objects.all()
     permission_classes = (permissions.IsAuthenticated,)
 
-class QuestionsViewSet(viewsets.ModelViewSet):
+class Questions(APIView):
     serializer_class = serializers.Question_Serializer
-    queryset = models.Question.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        questions = models.Question.objects.filter(form=request.query_params.get('formView'))
+        serialized_questions = self.serializer_class(questions, many=True, context={'request', request})
+        
+        return Response(serialized_questions.data, status=status.HTTP_200_OK)

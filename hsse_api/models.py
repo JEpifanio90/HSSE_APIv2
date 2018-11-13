@@ -173,7 +173,7 @@ class Question(models.Model):
     form = models.CharField(max_length=50, blank=False, null=False)
     icon = models.CharField(max_length=50, blank=False, null=False)
     input_type = models.CharField(max_length=20, blank=False, null=False)
-    key = models.CharField(max_length=120, blank=False, null=False, unique=True)
+    key = models.CharField(max_length=120, blank=False, null=False, unique=False)
     objects = models.Manager()
     label = models.CharField(max_length=120, blank=False, null=False)
     options = models.CharField(max_length=255, blank=True, null=True)
