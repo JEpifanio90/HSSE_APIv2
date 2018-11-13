@@ -86,13 +86,6 @@ class User(AbstractBaseUser, models.Model):
 
         return self.email
 
-class AuditInspection(models.Model):
-    audit_type = models.CharField(max_length=200, blank=False) # Did I have any choices right here?
-    due_date = models.DateField(auto_now=False, auto_now_add=False)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
-    created_on = models.DateField(auto_now_add=True)
-    objects = models.Manager()
-
 class EmployeeCommunityActivity(models.Model):
     activity_number = models.IntegerField(blank=False, null=False)
     activity_type = models.CharField(max_length=50, blank=False, null=False)

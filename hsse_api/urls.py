@@ -3,8 +3,6 @@ from rest_framework.routers import DefaultRouter
 from hsse_api import views
 
 router = DefaultRouter()
-router.register(r'audits', views.AuditsViewSet)
-router.register(r'community/activities', views.CommunitiesViewSet)
 router.register(r'environmental/indicators', views.EnvironmentalindicatorsViewSet)
 router.register(r'monthly/reports', views.MonthlyReportsViewSet)
 router.register(r'reports', views.ReportsViewSet)

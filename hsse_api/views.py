@@ -91,18 +91,6 @@ class UsersViewSet(viewsets.ModelViewSet):
     queryset = models.User.objects.all()
     permission_classes = (permissions.IsAuthenticated,)
 
-class AuditsViewSet(viewsets.ModelViewSet):
-    authentication_classes = (TokenAuthentication,)
-    serializer_class = serializers.AuditSerializer
-    queryset = models.AuditInspection.objects.all()
-    permission_classes = (permissions.IsAuthenticated,)
-
-class CommunitiesViewSet(viewsets.ModelViewSet):
-    authentication_classes = (TokenAuthentication,)
-    serializer_class = serializers.CommunitySerializer
-    queryset = models.EmployeeCommunityActivity.objects.all()
-    permission_classes = (permissions.IsAuthenticated,)
-
 class EnvironmentalindicatorsViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     serializer_class = serializers.EnvironmentalSerializer

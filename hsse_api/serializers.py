@@ -1,20 +1,6 @@
 from rest_framework import serializers
 from hsse_api import models
 
-class AuditSerializer(serializers.ModelSerializer):
-    created_by = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
-    class Meta:
-        model = models.AuditInspection
-        fields = ('id', 'audit_type', 'due_date', 'created_by', 'created_on')
-
-class CommunitySerializer(serializers.ModelSerializer):
-    site = serializers.PrimaryKeyRelatedField(queryset=models.Site.objects.all())
-    created_by = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
-
-    class Meta:
-        model = models.EmployeeCommunityActivity
-        fields = ('id', 'activity_number', 'activity_type', 'community_act', 'name', 'group', 'site', 'created_by', 'created_on')
-
 class EnvironmentalSerializer(serializers.ModelSerializer):
     site = serializers.PrimaryKeyRelatedField(queryset=models.Site.objects.all())
 
