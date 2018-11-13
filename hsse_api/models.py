@@ -24,7 +24,7 @@ class Site(models.Model):
     city = models.CharField(max_length=70, blank=False)
     state = models.CharField(max_length=50, blank=False)
     country = models.CharField(max_length=70, blank=False)
-    created_on = models.DateField()
+    created_on = models.DateField(auto_now_add=True)
     objects = models.Manager()
 
     REQUIRED_FIELDS = ['name', 'city', 'state', 'country']
@@ -44,7 +44,7 @@ class EnvironmentalIndicator(models.Model):
     waste_to_landfield = models.IntegerField(blank=False, null=False)
     waste_recycled = models.IntegerField(blank=False, null=False)
     site = models.ForeignKey(Site, on_delete=models.CASCADE)
-    created_on = models.DateField()
+    created_on = models.DateField(auto_now_add=True)
     objects = models.Manager()
 
 class MonthlyReport(models.Model):
@@ -56,14 +56,14 @@ class MonthlyReport(models.Model):
     no_reports_closed = models.IntegerField(blank=False, null=False)
     no_reports_in_progress = models.IntegerField(blank=False, null=False)
     no_reports_open = models.IntegerField(blank=False, null=False)
-    created_on = models.DateField()
+    created_on = models.DateField(auto_now_add=True)
     objects = models.Manager()
 
 class SafetyActivity(models.Model):
     activity_name = models.CharField(max_length=255, blank=False, unique=True)
     comments = models.TextField(blank=True, null=True)
     site = models.ForeignKey(Site, related_name='safety_activities', on_delete=models.CASCADE, blank=True, null=True)
-    created_on = models.DateField()
+    created_on = models.DateField(auto_now_add=True)
     objects = models.Manager()
     REQUIRED_FIELDS = ['activity_name']
 
@@ -76,7 +76,7 @@ class User(AbstractBaseUser, models.Model):
     name = models.CharField(max_length=255, blank=False)
     site = models.ForeignKey(Site, on_delete=models.CASCADE)
     contractor = models.BooleanField(default=False)
-    created_on = models.DateField()
+    created_on = models.DateField(auto_now_add=True)
     objects = UserManager()
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name', 'password']
@@ -90,7 +90,7 @@ class AuditInspection(models.Model):
     audit_type = models.CharField(max_length=200, blank=False) # Did I have any choices right here?
     due_date = models.DateField(auto_now=False, auto_now_add=False)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
-    created_on = models.DateField()
+    created_on = models.DateField(auto_now_add=True)
     objects = models.Manager()
 
 class EmployeeCommunityActivity(models.Model):
@@ -101,7 +101,7 @@ class EmployeeCommunityActivity(models.Model):
     group = models.CharField(max_length=120, blank=False, null=False)
     site = models.ForeignKey(Site, on_delete=models.CASCADE)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_on = models.DateField()
+    created_on = models.DateField(auto_now_add=True)
     objects = models.Manager()
 
 class Report(models.Model):
@@ -170,7 +170,7 @@ class Report(models.Model):
     incident_contributing_actions = models.TextField(blank=False, null=False)
     incident_contributing_conditions = models.TextField(blank=False, null=False)
     created_by = models.ForeignKey(User, related_name='report_creator', on_delete=models.CASCADE, blank=True, null=True)
-    created_on = models.DateField()
+    created_on = models.DateField(auto_now_add=True)
     objects = models.Manager()
 
 class Question(models.Model):

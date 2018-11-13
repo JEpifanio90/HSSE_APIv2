@@ -51,7 +51,6 @@ class Public(APIView):
 
         return Response(serialized_sites.data, status=status.HTTP_200_OK)
 
-# ! This sucks biiiiig time. RE-DO
 class Dashboard(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
@@ -61,22 +60,22 @@ class Dashboard(APIView):
         dates = serializers.Date_Serializer(data=request.data, context={'request': request})
         if dates.is_valid():
             # Reports
-            reports = models.Report.objects.all();
-            open_reports = len(reports.filter(status="O", created_on=dates.data['start_date'])) + len(reports.filter(status="O", created_on=dates.data['end_date']))
-            in_progress_reports = len(reports.filter(status="IP", created_on=dates.data['start_date'])) + len(reports.filter(status="IP", created_on=dates.data['end_date']))
-            closed_reports = len(reports.filter(status="CL", created_on=dates.data['start_date'])) + len(reports.filter(status="CL", created_on=dates.data['end_date']))
-            overdue_reports = len(reports.filter(status="OV", created_on=dates.data['start_date'])) + len(reports.filter(status="OV", created_on=dates.data['end_date']))
+            reports = models.Report.objects.all()
+            open_reports = len(reports.filter(status="O", created_on__range=(dates.data['start_date'], dates.data['end_date'])))
+            in_progress_reports = len(reports.filter(status="IP", created_on__range=(dates.data['start_date'], dates.data['end_date'])))
+            closed_reports = len(reports.filter(status="CL", created_on__range=(dates.data['start_date'], dates.data['end_date'])))
+            overdue_reports = len(reports.filter(status="OV", created_on__range=(dates.data['start_date'], dates.data['end_date'])))
             # Users
             users = models.User.objects.all()
-            users_count = len(users.filter(created_on=dates.data['start_date'])) + len(users.filter(created_on=dates.data['end_date']))
-            contractors = len(users.filter(contractor=True, created_on=dates.data['start_date'])) + len(users.filter(contractor=True, created_on=dates.data['end_date']))
+            users_count = len(users.filter(created_on__range=(dates.data['start_date'], dates.data['end_date']) ))
+            contractors = len(users.filter(contractor=True, created_on__range=(dates.data['start_date'], dates.data['end_date'])))
             # Indicators
             indicators = models.EnvironmentalIndicator.objects.all()
-            indicators_count = len(indicators.filter(created_on=dates.data['start_date'])) + len(indicators.filter(created_on=dates.data['end_date']))
+            indicators_count = len(indicators.filter(created_on__range=(dates.data['start_date'], dates.data['end_date'])))
             monthly = models.MonthlyReport.objects.all()
-            monthly_count = len(monthly.filter(created_on=dates.data['start_date'])) + len(monthly.filter(created_on=dates.data['end_date']))
+            monthly_count = len(monthly.filter(created_on__range=(dates.data['start_date'], dates.data['end_date'])))
             activities = models.SafetyActivity.objects.all()
-            activities_count = len(activities.filter(created_on=dates.data['start_date'])) + len(activities.filter(created_on=dates.data['end_date']))
+            activities_count = len(activities.filter(created_on__range=(dates.data['start_date'], dates.data['end_date'])))
 
             data = {
                 "reports": [open_reports, in_progress_reports, closed_reports, overdue_reports],
