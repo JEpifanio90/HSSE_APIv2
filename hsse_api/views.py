@@ -121,11 +121,19 @@ class SitesViewSet(viewsets.ModelViewSet):
     queryset = models.Site.objects.all()
     permission_classes = (permissions.IsAuthenticated,)
 
+# ! Sucks big time I know
 class Questions(APIView):
     serializer_class = serializers.Question_Serializer
 
     def get(self, request, *args, **kwargs):
-        questions = models.Question.objects.filter(form=request.query_params.get('formView'))
-        serialized_questions = self.serializer_class(questions, many=True, context={'request', request})
-        
-        return Response(serialized_questions.data, status=status.HTTP_200_OK)
+        if request.query_params.get('formView') == 'userLoginView' or  request.query_params.get('formView') == 'newUserView':
+            login_questions = models.Question.objects.filter(form='userLoginView')
+            new_user_questions = models.Question.objects.filter(form='newUserView')
+            login_serialized = self.serializer_class(login_questions, many=True, context={'request', request})
+            new_usr_serialized = self.serializer_class(new_user_questions, many=True, context={'request', request})
+            serialized_questions = { 'userLoginView': login_serialized.data, 'newUserView': new_usr_serialized.data}
+            return Response(serialized_questions, status=status.HTTP_200_OK)
+        else:
+            questions = models.Question.objects.filter(form=request.query_params.get('formView'))
+            serialized_questions = self.serializer_class(questions, many=True, context={'request', request})
+            return Response(serialized_questions.data, status=status.HTTP_200_OK)
