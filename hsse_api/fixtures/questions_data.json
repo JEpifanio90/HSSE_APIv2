@@ -996,7 +996,7 @@
     "model": "hsse_api.Question",
     "pk": 74,
     "fields": {
-      "control_type": "userdropdown",
+      "control_type": "sitesDropdown",
       "disabled": false,
       "error": "What?! No first name or alias?",
       "form": "newUserView",
