@@ -926,7 +926,7 @@
       "disabled": false,
       "form": "userLoginView",
       "icon": "key",
-      "input_type": "text",
+      "input_type": "password",
       "options": "",
       "key": "password",
       "label": "Password",
@@ -1004,7 +1004,7 @@
       "input_type": "text",
       "key": "site",
       "label": "Site of user",
-      "options": [],
+      "options": "",
       "required": true
     }
   },
@@ -1020,7 +1020,7 @@
       "input_type": "text",
       "key": "activity_name",
       "label": "Activity Name",
-      "options": [],
+      "options": "",
       "required": true
     }
   },
@@ -1036,7 +1036,7 @@
       "input_type": "text",
       "key": "comments",
       "label": "Comments",
-      "options": [],
+      "options": "",
       "required": true
     }
   },
@@ -1052,7 +1052,7 @@
       "input_type": "text",
       "key": "site",
       "label": "Where will this activity take place?",
-      "options": [],
+      "options": "",
       "required": true
     }
   },
@@ -1161,7 +1161,7 @@
       "input_type": "number",
       "key": "waste_sold",
       "label": "Waste Sold",
-      "options": [],
+      "options": "",
       "required": true
     }
   },
@@ -1177,7 +1177,7 @@
       "input_type": "number",
       "key": "waste_to_landfield",
       "label": "Waste to landfield",
-      "options": [],
+      "options": "",
       "required": true
     }
   },
@@ -1193,7 +1193,7 @@
       "input_type": "number",
       "key": "waste_recycled",
       "label": "Waste recycled",
-      "options": [],
+      "options": "",
       "required": true
     }
   },
@@ -1209,7 +1209,7 @@
       "input_type": "text",
       "key": "site",
       "label": "Where will this activity take place?",
-      "options": [],
+      "options": "",
       "required": true
     }
   },
@@ -1225,7 +1225,7 @@
       "input_type": "date",
       "key": "start_date",
       "label": "From",
-      "options": [],
+      "options": "",
       "required": true
     }
   },
@@ -1241,7 +1241,7 @@
       "input_type": "date",
       "key": "end_date",
       "label": "To",
-      "options": [],
+      "options": "",
       "required": true
     }
   },
@@ -1319,7 +1319,7 @@
       "input_type": "number",
       "key": "no_reports_overdue",
       "label": "Number Of Actions Overdue",
-      "options": [],
+      "options": "",
       "required": true
     }
   },
@@ -1335,7 +1335,7 @@
       "input_type": "number",
       "key": "no_reports_closed",
       "label": "Number Of Actions Closed",
-      "options": [],
+      "options": "",
       "required": true
     }
   },
@@ -1351,7 +1351,7 @@
       "input_type": "number",
       "key": "no_reports_in_progress",
       "label": "Number Of Actions In Progress",
-      "options": [],
+      "options": "",
       "required": true
     }
   },
@@ -1367,7 +1367,7 @@
       "input_type": "number",
       "key": "no_reports_open",
       "label": "Number Of Actions Open",
-      "options": [],
+      "options": "",
       "required": true
     }
   }
