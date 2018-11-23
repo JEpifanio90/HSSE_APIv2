@@ -1233,7 +1233,7 @@
     "model": "hsse_api.Question",
     "pk": 89,
     "fields": {
-      "control_type": "dropdown",
+      "control_type": "datepicker",
       "disabled": false,
       "error": "",
       "form": "dashboardView",
