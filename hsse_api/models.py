@@ -86,17 +86,6 @@ class User(AbstractBaseUser, models.Model):
 
         return self.email
 
-class EmployeeCommunityActivity(models.Model):
-    activity_number = models.IntegerField(blank=False, null=False)
-    activity_type = models.CharField(max_length=50, blank=False, null=False)
-    community_act = models.BooleanField()
-    name = models.CharField(max_length=80, blank=False, null=False)
-    group = models.CharField(max_length=120, blank=False, null=False)
-    site = models.ForeignKey(Site, on_delete=models.CASCADE)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_on = models.DateField(auto_now_add=True)
-    objects = models.Manager()
-
 class Report(models.Model):
     case_number = models.CharField(max_length=120, unique=True, blank=False, null=False)
     clock_number = models.TimeField(auto_now=False, auto_now_add=False, blank=False, null=False)
