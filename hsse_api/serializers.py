@@ -143,8 +143,7 @@ class SiteSerializer(serializers.ModelSerializer):
             'country'
         )
 
-
-class Question_Serializer(serializers.ModelSerializer):
+class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Question
@@ -163,6 +162,7 @@ class Question_Serializer(serializers.ModelSerializer):
             'value'
         )
 
-class Date_Serializer(serializers.Serializer):
-    start_date = serializers.DateField()
-    end_date = serializers.DateField()
+# class DashboardStatsSerializer(serializers.Serializer):
+#     reports = serializers.IntegerField()
+#     users = serializers.IntegerField()
+#     indicators = serializers.IntegerField()

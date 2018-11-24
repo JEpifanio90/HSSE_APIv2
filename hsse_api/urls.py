@@ -14,8 +14,7 @@ router.register(r'users', views.UsersViewSet)
 urlpatterns = [
     url(r'^login/?$', views.Login.as_view()),
     url(r'^signin/?$', views.SignIn.as_view()),
-    url(r'^public/sites?$', views.Public.as_view()),
-    url(r'^dashboard/?$', views.Dashboard.as_view()),
-    url(r'^questions/?$', views.Questions.as_view()),
+    url(r'^public/?$', views.Public.as_view()),
+    url(r'^statistics/?$', views.Statistics.as_view()),
     url(r'^', include(router.urls))
 ]

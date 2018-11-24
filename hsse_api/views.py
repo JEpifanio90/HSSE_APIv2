@@ -45,45 +45,70 @@ class SignIn(APIView):
 
 class Public(APIView):
 
+    def get_serialized_questions(self, request):
+        serialized_questions = None
+        if request.query_params.get('formView') == 'userLoginView' or  request.query_params.get('formView') == 'newUserView':
+            login_questions = models.Question.objects.filter(form='userLoginView')
+            new_user_questions = models.Question.objects.filter(form='newUserView')
+            login_serialized = serializers.QuestionSerializer(login_questions, many=True, context={'request', request})
+            new_usr_serialized = serializers.QuestionSerializer(new_user_questions, many=True, context={'request', request})
+            serialized_questions = { 'userLoginView': login_serialized.data, 'newUserView': new_usr_serialized.data}
+        else:
+            questions = models.Question.objects.filter(form=request.query_params.get('formView'))
+            serialized_questions = serializers.QuestionSerializer(questions, many=True, context={'request', request})
+            serialized_questions = serialized_questions.data
+        return serialized_questions
+
     def get(self, request, *args, **kwargs):
-        sites = models.Site.objects.all()
-        serialized_sites = serializers.SiteSerializer(sites, many=True)
+        serialized_object = None
+        if request.query_params.get('querySection') == 'sites':
+            sites = models.Site.objects.all()
+            serialized_object = serializers.SiteSerializer(sites, many=True)
+            serialized_object = serialized_object.data
+        elif request.query_params.get('querySection') == 'questions':
+            serialized_object = self.get_serialized_questions(request)
 
-        return Response(serialized_sites.data, status=status.HTTP_200_OK)
+        return Response(serialized_object, status=status.HTTP_200_OK)
 
-class Dashboard(APIView):
+class Statistics(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
-    serializer_class = serializers.EnvironmentalSerializer
+    # serializer_class = serializers.EnvironmentalSerializer
 
-    def post(self, request, *args, **kwargs):
-        dates = serializers.Date_Serializer(data=request.data, context={'request': request})
-        if dates.is_valid():
-            # Reports
-            reports = models.Report.objects.all()
-            open_reports = len(reports.filter(status="O", created_on__range=(dates.data['start_date'], dates.data['end_date'])))
-            in_progress_reports = len(reports.filter(status="IP", created_on__range=(dates.data['start_date'], dates.data['end_date'])))
-            closed_reports = len(reports.filter(status="CL", created_on__range=(dates.data['start_date'], dates.data['end_date'])))
-            overdue_reports = len(reports.filter(status="OV", created_on__range=(dates.data['start_date'], dates.data['end_date'])))
-            # Users
-            users = models.User.objects.all()
-            users_count = len(users.filter(created_on__range=(dates.data['start_date'], dates.data['end_date']) ))
-            contractors = len(users.filter(contractor=True, created_on__range=(dates.data['start_date'], dates.data['end_date'])))
-            # Indicators
-            indicators = models.EnvironmentalIndicator.objects.all()
-            indicators_count = len(indicators.filter(created_on__range=(dates.data['start_date'], dates.data['end_date'])))
-            monthly = models.MonthlyReport.objects.all()
-            monthly_count = len(monthly.filter(created_on__range=(dates.data['start_date'], dates.data['end_date'])))
-            activities = models.SafetyActivity.objects.all()
-            activities_count = len(activities.filter(created_on__range=(dates.data['start_date'], dates.data['end_date'])))
+    def get_dashboard_stats(self, request):
+        start_date = request.query_params.get('startDate')
+        end_date = request.query_params.get('endDate')
+        reports = models.Report.objects.all()
+        open_reports = len(reports.filter(status="O", created_on__range=(start_date, end_date)))
+        in_progress_reports = len(reports.filter(status="IP", created_on__range=(start_date, end_date)))
+        closed_reports = len(reports.filter(status="CL", created_on__range=(start_date, end_date)))
+        overdue_reports = len(reports.filter(status="OV", created_on__range=(start_date, end_date)))
+        # Users
+        users = models.User.objects.all()
+        users_count = len(users.filter(created_on__range=(start_date, end_date) ))
+        contractors = len(users.filter(contractor=True, created_on__range=(start_date, end_date)))
+        # Indicators
+        indicators = models.EnvironmentalIndicator.objects.all()
+        indicators_count = len(indicators.filter(created_on__range=(start_date, end_date)))
+        monthly = models.MonthlyReport.objects.all()
+        monthly_count = len(monthly.filter(created_on__range=(start_date, end_date)))
+        activities = models.SafetyActivity.objects.all()
+        activities_count = len(activities.filter(created_on__range=(start_date, end_date)))
+        data = {
+            "reports": [open_reports, in_progress_reports, closed_reports, overdue_reports],
+            "users": [users_count, contractors],
+            "indicators": [indicators_count, monthly_count, activities_count],
+        }
 
-            data = {
-                "reports": [open_reports, in_progress_reports, closed_reports, overdue_reports],
-                "users": [users_count, contractors],
-                "indicators": [indicators_count, monthly_count, activities_count],
-            }
-            return Response(data, status=status.HTTP_200_OK)
-        return Response(dates.errors, status=status.HTTP_400_BAD_REQUEST)
+        return data
+
+    def get(self, request, *args, **kwargs):
+        serialized_object = None
+        if request.query_params.get('view') == 'dashboard':
+            serialized_object = self.get_dashboard_stats(request)
+
+        return Response(serialized_object, status=status.HTTP_200_OK)
+
 
 class UsersViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
@@ -120,20 +145,3 @@ class SitesViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.SiteSerializer
     queryset = models.Site.objects.all()
     permission_classes = (permissions.IsAuthenticated,)
-
-# ! Sucks big time I know
-class Questions(APIView):
-    serializer_class = serializers.Question_Serializer
-
-    def get(self, request, *args, **kwargs):
-        if request.query_params.get('formView') == 'userLoginView' or  request.query_params.get('formView') == 'newUserView':
-            login_questions = models.Question.objects.filter(form='userLoginView')
-            new_user_questions = models.Question.objects.filter(form='newUserView')
-            login_serialized = self.serializer_class(login_questions, many=True, context={'request', request})
-            new_usr_serialized = self.serializer_class(new_user_questions, many=True, context={'request', request})
-            serialized_questions = { 'userLoginView': login_serialized.data, 'newUserView': new_usr_serialized.data}
-            return Response(serialized_questions, status=status.HTTP_200_OK)
-        else:
-            questions = models.Question.objects.filter(form=request.query_params.get('formView'))
-            serialized_questions = self.serializer_class(questions, many=True, context={'request', request})
-            return Response(serialized_questions.data, status=status.HTTP_200_OK)
