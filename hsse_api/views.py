@@ -1,4 +1,5 @@
 from django.http import Http404
+from django.db.models import Sum
 from rest_framework import status, permissions, viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
@@ -8,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from hsse_api import models
 from hsse_api import serializers
+import pdb
 
 class Login(ObtainAuthToken):
 
@@ -47,14 +49,33 @@ class Public(APIView):
 
     def get_serialized_questions(self, request):
         serialized_questions = None
-        if request.query_params.get('formView') == 'userLoginView' or  request.query_params.get('formView') == 'newUserView':
-            login_questions = models.Question.objects.filter(form='userLoginView')
-            new_user_questions = models.Question.objects.filter(form='newUserView')
+        questions = models.Question.objects.all()
+        if request.query_params.get('formView') in ['userLoginView', 'newUserView']:
+            login_questions = questions.filter(form='userLoginView')
+            new_user_questions = questions.filter(form='newUserView')
             login_serialized = serializers.QuestionSerializer(login_questions, many=True, context={'request', request})
             new_usr_serialized = serializers.QuestionSerializer(new_user_questions, many=True, context={'request', request})
             serialized_questions = { 'userLoginView': login_serialized.data, 'newUserView': new_usr_serialized.data}
+        elif request.query_params.get('formView') in ['personalInfoView', 'incidentDescriptionView', 'eventDescriptionView', 'incidentAnalysisView', 'approvalsView']:
+            personal_questions = questions.filter(form='personalInfoView')
+            description_questions = questions.filter(form='incidentDescriptionView')
+            event_questions = questions.filter(form='eventDescriptionView')
+            incident_questions = questions.filter(form='incidentAnalysisView')
+            approval_questions = questions.filter(form='approvalsView')
+            personal_serialized = serializers.QuestionSerializer(personal_questions, many=True, context={'request', request})
+            description_serialized = serializers.QuestionSerializer(description_questions, many=True, context={'request', request})
+            event_serialized = serializers.QuestionSerializer(event_questions, many=True, context={'request', request})
+            incident_serialized = serializers.QuestionSerializer(incident_questions, many=True, context={'request', request})
+            approval_serialized = serializers.QuestionSerializer(approval_questions, many=True, context={'request', request})
+            serialized_questions = {
+                'personalInfoView': personal_serialized.data,
+                'incidentDescriptionView': description_serialized.data,
+                'eventDescriptionView': event_serialized.data,
+                'incidentAnalysisView': incident_serialized.data,
+                'incidentDapprovalsViewescriptionView': approval_serialized.data
+            }
         else:
-            questions = models.Question.objects.filter(form=request.query_params.get('formView'))
+            questions = questions.filter(form=request.query_params.get('formView'))
             serialized_questions = serializers.QuestionSerializer(questions, many=True, context={'request', request})
             serialized_questions = serialized_questions.data
         return serialized_questions
@@ -68,12 +89,12 @@ class Public(APIView):
         elif request.query_params.get('querySection') == 'questions':
             serialized_object = self.get_serialized_questions(request)
 
+        pdb.set_trace()
         return Response(serialized_object, status=status.HTTP_200_OK)
 
 class Statistics(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
-    # serializer_class = serializers.EnvironmentalSerializer
 
     def get_dashboard_stats(self, request):
         start_date = request.query_params.get('startDate')
@@ -101,11 +122,44 @@ class Statistics(APIView):
         }
 
         return data
+    
+    def get_environmental_indicators_stats(self, request):
+        data = dict()
+        indicators = models.EnvironmentalIndicator.objects.filter(created_on__range=(request.query_params.get('startDate'), request.query_params.get('endDate')))
+        data['totalRenewableElectricityConsumed'] = indicators.aggregate(Sum('renewable_electricity_consumed'))['renewable_electricity_consumed__sum']
+        data['totalElectricityConsumed'] = indicators.aggregate(Sum('non_renewable_electricity_consumed'))['non_renewable_electricity_consumed__sum']
+        data['totalConsumedGas'] = indicators.aggregate(Sum('consumed_gas'))['consumed_gas__sum']
+        data['totalConsumedWater'] = indicators.aggregate(Sum('consumed_water'))['consumed_water__sum']
+        data['totalDangerousWasteGenerated'] = indicators.aggregate(Sum('dangerous_waste_generated'))['dangerous_waste_generated__sum']
+        data['totalNonDangerousWasteGenerated'] = indicators.aggregate(Sum('non_dangerous_waste_generated'))['non_dangerous_waste_generated__sum']
+        data['totalWasteSold'] = indicators.aggregate(Sum('waste_sold'))['waste_sold__sum']
+        data['totalToLandfield'] = indicators.aggregate(Sum('waste_to_landfield'))['waste_to_landfield__sum']
+        data['totalWasteRecycled'] = indicators.aggregate(Sum('waste_recycled'))['waste_recycled__sum']
+
+        return data
+    
+    def get_monthly_reports_stats(self, request):
+        data = dict()
+        indicators = models.MonthlyReport.objects.filter(created_on__range=(request.query_params.get('startDate'), request.query_params.get('endDate')))
+        data['totalEmployees'] = indicators.aggregate(Sum('no_employees'))['no_employees__sum']
+        data['totalContractors'] = indicators.aggregate(Sum('no_contractors'))['no_contractors__sum']
+        data['totalWorkedEmployeehours'] = indicators.aggregate(Sum('worked_employee_hours'))['worked_employee_hours__sum']
+        data['totalWorkedContractorHours'] = indicators.aggregate(Sum('worked_contractor_hours'))['worked_contractor_hours__sum']
+        data['totalReportsOverdue'] = indicators.aggregate(Sum('no_reports_overdue'))['no_reports_overdue__sum']
+        data['totalReportsClosed'] = indicators.aggregate(Sum('no_reports_closed'))['no_reports_closed__sum']
+        data['totalReportsIP'] = indicators.aggregate(Sum('no_reports_in_progress'))['no_reports_in_progress__sum']
+        data['totalReportsOpen'] = indicators.aggregate(Sum('no_reports_open'))['no_reports_open__sum']
+
+        return data
 
     def get(self, request, *args, **kwargs):
         serialized_object = None
-        if request.query_params.get('view') == 'dashboard':
+        if request.query_params.get('view') == 'dashboardView':
             serialized_object = self.get_dashboard_stats(request)
+        elif  request.query_params.get('view') == 'environmentalIndicatorsView':
+            serialized_object = self.get_environmental_indicators_stats(request)
+        elif request.query_params.get('view') == 'monthlyReportsView':
+            serialized_object = self.get_monthly_reports_stats(request)
 
         return Response(serialized_object, status=status.HTTP_200_OK)
 
