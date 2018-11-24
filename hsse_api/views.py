@@ -9,7 +9,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from hsse_api import models
 from hsse_api import serializers
-import pdb
 
 class Login(ObtainAuthToken):
 
@@ -89,7 +88,6 @@ class Public(APIView):
         elif request.query_params.get('querySection') == 'questions':
             serialized_object = self.get_serialized_questions(request)
 
-        pdb.set_trace()
         return Response(serialized_object, status=status.HTTP_200_OK)
 
 class Statistics(APIView):
