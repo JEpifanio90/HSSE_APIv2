@@ -121,7 +121,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.User
-        fields = ('id', 'email', 'name', 'password', 'site', 'created_on')
+        fields = ('id', 'email', 'name', 'password', 'site', 'contractor', 'created_on')
         extra_kwargs = {'password': {'write_only': True}}
 
 class SafetyActivitySerializer(serializers.ModelSerializer):

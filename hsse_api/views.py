@@ -104,7 +104,7 @@ class Statistics(APIView):
         overdue_reports = len(reports.filter(status="OV", created_on__range=(start_date, end_date)))
         # Users
         users = models.User.objects.all()
-        users_count = len(users.filter(created_on__range=(start_date, end_date) ))
+        users_count = len(users.filter(contractor=False, created_on__range=(start_date, end_date) ))
         contractors = len(users.filter(contractor=True, created_on__range=(start_date, end_date)))
         # Indicators
         indicators = models.EnvironmentalIndicator.objects.all()
