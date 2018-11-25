@@ -75,7 +75,7 @@ class User(AbstractBaseUser, models.Model):
     email = models.EmailField(max_length=255, blank=False, unique=True)
     name = models.CharField(max_length=255, blank=False)
     site = models.ForeignKey(Site, on_delete=models.CASCADE)
-    contractor = models.BooleanField()
+    contractor = models.BooleanField(default=False)
     created_on = models.DateField(auto_now_add=True)
     objects = UserManager()
     USERNAME_FIELD = 'email'
