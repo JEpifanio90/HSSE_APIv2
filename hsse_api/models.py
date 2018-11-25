@@ -6,12 +6,12 @@ from hsse_api.constants import Constants
 class UserManager(BaseUserManager):
     """Manager For User Creation"""
 
-    def create(self, email, name, password, site):
+    def create(self, email, name, password, site, contractor):
         """Yup, what it says"""
         if not email:
             raise ValueError("Hey! We need an email")
         email = self.normalize_email(email)
-        user = self.model(name=name, email=email, site=site)
+        user = self.model(name=name, email=email, site=site, contractor=contractor)
         user.set_password(password)
         user.save(using=self._db)
 
