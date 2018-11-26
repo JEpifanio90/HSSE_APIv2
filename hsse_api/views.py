@@ -67,11 +67,11 @@ class Public(APIView):
             incident_serialized = serializers.QuestionSerializer(incident_questions, many=True, context={'request', request})
             approval_serialized = serializers.QuestionSerializer(approval_questions, many=True, context={'request', request})
             serialized_questions = {
-                'personalInfoView': personal_serialized.data,
-                'incidentDescriptionView': description_serialized.data,
-                'eventDescriptionView': event_serialized.data,
-                'incidentAnalysisView': incident_serialized.data,
-                'incidentDapprovalsViewescriptionView': approval_serialized.data
+                'personalInfoQs': personal_serialized.data,
+                'incidentDescriptionQs': description_serialized.data,
+                'eventDescriptionQs': event_serialized.data,
+                'incidentAnalysisQs': incident_serialized.data,
+                'approvalsQs': approval_serialized.data
             }
         else:
             questions = questions.filter(form=request.query_params.get('formView'))
