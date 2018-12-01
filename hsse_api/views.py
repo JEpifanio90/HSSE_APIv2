@@ -131,7 +131,7 @@ class Statistics(APIView):
         data['totalDangerousWasteGenerated'] = indicators.aggregate(Sum('dangerous_waste_generated'))['dangerous_waste_generated__sum']
         data['totalNonDangerousWasteGenerated'] = indicators.aggregate(Sum('non_dangerous_waste_generated'))['non_dangerous_waste_generated__sum']
         data['totalWasteSold'] = indicators.aggregate(Sum('waste_sold'))['waste_sold__sum']
-        data['totalToLandfield'] = indicators.aggregate(Sum('waste_to_landfield'))['waste_to_landfield__sum']
+        data['totalToLandfield'] = indicators.aggregate(Sum('waste_to_landfill'))['waste_to_landfill__sum']
         data['totalWasteRecycled'] = indicators.aggregate(Sum('waste_recycled'))['waste_recycled__sum']
 
         return data

@@ -15,7 +15,7 @@ class EnvironmentalSerializer(serializers.ModelSerializer):
             'dangerous_waste_generated',
             'non_dangerous_waste_generated',
             'waste_sold',
-            'waste_to_landfield',
+            'waste_to_landfill',
             'waste_recycled',
             'site',
             'created_on'

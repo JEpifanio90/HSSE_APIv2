@@ -866,34 +866,6 @@
     "model": "hsse_api.Question",
     "pk": 65,
     "fields": {
-      "control_type": "textbox",
-      "disabled": false,
-      "form": "approvalsView",
-      "icon": "calendar",
-      "input_type": "number",
-      "key": "month_created",
-      "label": "Month Created",
-      "required": true
-    }
-  },
-  {
-    "model": "hsse_api.Question",
-    "pk": 66,
-    "fields": {
-      "control_type": "textbox",
-      "disabled": false,
-      "form": "approvalsView",
-      "icon": "calendar-alt",
-      "input_type": "number",
-      "key": "year_created",
-      "label": "Year Created",
-      "required": true
-    }
-  },
-  {
-    "model": "hsse_api.Question",
-    "pk": 67,
-    "fields": {
       "control_type": "dropdown",
       "disabled": false,
       "form": "approvalsView",
@@ -906,7 +878,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 68,
+    "pk": 66,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -920,7 +892,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 69,
+    "pk": 67,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -935,7 +907,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 70,
+    "pk": 68,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -950,7 +922,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 71,
+    "pk": 69,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -965,7 +937,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 72,
+    "pk": 70,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -979,7 +951,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 73,
+    "pk": 71,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -994,7 +966,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 74,
+    "pk": 72,
     "fields": {
       "control_type": "dropdown",
       "disabled": false,
@@ -1010,7 +982,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 75,
+    "pk": 73,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -1026,7 +998,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 76,
+    "pk": 74,
     "fields": {
       "control_type": "textbox",
       "disabled": false,
@@ -1042,7 +1014,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 77,
+    "pk": 75,
     "fields": {
       "control_type": "dropdown",
       "disabled": false,
@@ -1058,7 +1030,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 78,
+    "pk": 76,
     "fields": {
       "control_type": "textbox",
       "error": "What?!",
@@ -1073,7 +1045,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 79,
+    "pk": 77,
     "fields": {
       "control_type": "textbox",
       "error": "What?!",
@@ -1089,7 +1061,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 80,
+    "pk": 78,
     "fields": {
       "control_type": "textbox",
       "error": "What?!",
@@ -1104,7 +1076,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 81,
+    "pk": 79,
     "fields": {
       "control_type": "textbox",
       "error": "What?!",
@@ -1120,7 +1092,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 82,
+    "pk": 80,
     "fields": {
       "control_type": "textbox",
       "error": "What?!",
@@ -1135,7 +1107,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 83,
+    "pk": 81,
     "fields": {
       "control_type": "textbox",
       "error": "What?!",
@@ -1151,7 +1123,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 84,
+    "pk": 82,
     "fields": {
       "control_type": "textbox",
       "error": "What?!",
@@ -1167,7 +1139,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 85,
+    "pk": 83,
     "fields": {
       "control_type": "textbox",
       "error": "What?!",
@@ -1175,15 +1147,15 @@
       "form": "environmentalIndicatorsView",
       "icon": "trash",
       "input_type": "number",
-      "key": "waste_to_landfield",
-      "label": "Waste to landfield",
+      "key": "waste_to_landfill",
+      "label": "Waste to Landfill",
       "options": "",
       "required": true
     }
   },
   {
     "model": "hsse_api.Question",
-    "pk": 86,
+    "pk": 84,
     "fields": {
       "control_type": "textbox",
       "error": "What?!",
@@ -1199,7 +1171,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 87,
+    "pk": 85,
     "fields": {
       "control_type": "dropdown",
       "disabled": false,
@@ -1215,7 +1187,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 88,
+    "pk": 86,
     "fields": {
       "control_type": "datepicker",
       "error": "What?!",
@@ -1231,7 +1203,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 89,
+    "pk": 87,
     "fields": {
       "control_type": "datepicker",
       "disabled": false,
@@ -1247,7 +1219,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 90,
+    "pk": 88,
     "fields": {
       "control_type": "textbox",
       "error": "What?!",
@@ -1262,7 +1234,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 91,
+    "pk": 89,
     "fields": {
       "control_type": "textbox",
       "error": "What?!",
@@ -1278,7 +1250,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 92,
+    "pk": 90,
     "fields": {
       "control_type": "textbox",
       "error": "What?!",
@@ -1293,7 +1265,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 93,
+    "pk": 91,
     "fields": {
       "control_type": "textbox",
       "error": "What?!",
@@ -1309,7 +1281,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 94,
+    "pk": 92,
     "fields": {
       "control_type": "textbox",
       "error": "What?!",
@@ -1325,7 +1297,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 95,
+    "pk": 93,
     "fields": {
       "control_type": "textbox",
       "error": "What?!",
@@ -1341,7 +1313,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 96,
+    "pk": 94,
     "fields": {
       "control_type": "textbox",
       "error": "What?!",
@@ -1357,7 +1329,7 @@
   },
   {
     "model": "hsse_api.Question",
-    "pk": 97,
+    "pk": 95,
     "fields": {
       "control_type": "textbox",
       "disabled": false,

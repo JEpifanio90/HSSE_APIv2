@@ -41,7 +41,7 @@ class EnvironmentalIndicator(models.Model):
     dangerous_waste_generated = models.IntegerField(blank=False, null=False)
     non_dangerous_waste_generated = models.IntegerField(blank=False, null=False)
     waste_sold = models.IntegerField(blank=False, null=False)
-    waste_to_landfield = models.IntegerField(blank=False, null=False)
+    waste_to_landfill = models.IntegerField(blank=False, null=False)
     waste_recycled = models.IntegerField(blank=False, null=False)
     site = models.ForeignKey(Site, on_delete=models.CASCADE)
     created_on = models.DateField(auto_now_add=True)
