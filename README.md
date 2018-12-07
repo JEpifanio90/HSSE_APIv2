@@ -3,6 +3,7 @@
 HSSE API Made With Django Rest Framework And Postgresql
 
 --- hola
+-- adios
 
 ## Requirements
 
